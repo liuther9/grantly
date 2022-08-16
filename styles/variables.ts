@@ -1,0 +1,7 @@
+const LIGHT_PURPLE = '#F7F8FF'
+const PURPLE = '#7381FF'
+
+export {
+	LIGHT_PURPLE,
+	PURPLE,
+}
