@@ -4,8 +4,9 @@ import Header from './Header'
 
 const Main = styled.main`
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 	width: 100vw;
 	height: calc(100vh - 64px);
 `
