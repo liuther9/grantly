@@ -1,15 +1,20 @@
 import styled from "styled-components"
 import { FiCalendar, FiUser } from 'react-icons/fi'
-import { LIGHT_PURPLE } from "styles/variables"
+import { _LIGHT_PURPLE } from "styles/variables"
 import Image from "next/image"
 
 const StyledHeader = styled.header`
+	position: sticky;
+	position: -webkit-sticky;
+	z-index: 1;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 64px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background-color: ${LIGHT_PURPLE};
+	background-color: ${_LIGHT_PURPLE};
 	padding: 16px;
 `
 

@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
-import { GRAY, LIGHT_GRAY, LIGHT_GREEN, PURPLE, RED } from 'styles/variables'
+import { _GRAY, _LIGHT_GRAY, _LIGHT_GREEN, _PURPLE, _RED } from 'styles/variables'
 
 const StyledHead = styled.div`
   display: flex;
@@ -57,25 +57,25 @@ const StyledInput = styled.input`
   width: 100%;
   height: 40px;
   border: none;
-  border-bottom: 1px solid ${LIGHT_GRAY};
+  border-bottom: 1px solid ${_LIGHT_GRAY};
   outline: none;
   font-size: 14px;
   line-height: 20px;
   &:focus {
-    caret-color: ${PURPLE};
-    color: ${PURPLE};
-    border-bottom: 1px solid ${PURPLE};
+    caret-color: ${_PURPLE};
+    color: ${_PURPLE};
+    border-bottom: 1px solid ${_PURPLE};
   }
   &::placeholder {
-    color: ${GRAY};
+    color: ${_GRAY};
   }
   &[aria-invalid='true'] {
-    color: ${RED};
-    border-bottom: 1px solid ${RED};
+    color: ${_RED};
+    border-bottom: 1px solid ${_RED};
   }
   &[aria-checked='true'] {
-    color: ${LIGHT_GREEN};
-    border-bottom: 1px solid ${LIGHT_GREEN};
+    color: ${_LIGHT_GREEN};
+    border-bottom: 1px solid ${_LIGHT_GREEN};
   }
 `
 
@@ -83,7 +83,7 @@ const Error = styled.span`
   width: 100%;
   font-size: 14px;
   line-height: 20px;
-  color: ${RED};
+  color: ${_RED};
 `
 
 const Auth: NextPage = () => {
