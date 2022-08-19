@@ -33,6 +33,8 @@ const ImgContainer = styled.div`
 	width: calc(100% - 32px);
 	min-height: 160px;
 	margin: 0 auto 16px;
+  overflow: hidden;
+  border-radius: 24px;
 `
 const IntroCarousel = (props: PropType) => {
   // return <div></div>
