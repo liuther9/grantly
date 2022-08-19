@@ -45,7 +45,7 @@ const IntroCarousel = (props: PropType) => {
         { slides && slides.map((slide: any) => (
           <EmblaSlide key={slide.id}>
             <ImgContainer>
-              <Image src={slide.url} alt={slide.title} fill style={{ objectFit: 'contain' }} />
+              <Image src={slide.url} alt={slide.title} fill style={{ objectFit: 'cover' }} />
             </ImgContainer>
           </EmblaSlide>
         ))}
