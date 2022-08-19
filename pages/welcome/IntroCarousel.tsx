@@ -35,23 +35,23 @@ const ImgContainer = styled.div`
 	margin: 0 auto 16px;
 `
 const IntroCarousel = (props: PropType) => {
-  return <div></div>
-  // const { options, slides } = props
-  // const [emblaRef] = useEmblaCarousel(options)
+  // return <div></div>
+  const { options, slides } = props
+  const [emblaRef] = useEmblaCarousel(options)
 
-  // return (
-  //   <Embla ref={emblaRef}>
-  //     <EmblaContainer>
-  //       { slides && slides.map((slide: any) => (
-  //         <EmblaSlide key={slide.id}>
-  //           <ImgContainer>
-  //             <Image src={slide.url} alt={slide.title} fill style={{ objectFit: 'contain' }} />
-  //           </ImgContainer>
-  //         </EmblaSlide>
-  //       ))}
-  //     </EmblaContainer>
-  //   </Embla>
-  // )
+  return (
+    <Embla ref={emblaRef}>
+      <EmblaContainer>
+        { slides && slides.map((slide: any) => (
+          <EmblaSlide key={slide.id}>
+            <ImgContainer>
+              <Image src={slide.url} alt={slide.title} fill style={{ objectFit: 'contain' }} />
+            </ImgContainer>
+          </EmblaSlide>
+        ))}
+      </EmblaContainer>
+    </Embla>
+  )
 }
 
 export default IntroCarousel

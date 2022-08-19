@@ -142,6 +142,7 @@ const Auth: NextPage = () => {
         onChange={e => setPassword(e.target.value)}
         aria-checked={passSuccess}
         aria-invalid={passError}
+        placeholder='Введите пароль'
       />
       <StyledInput
         type='password'
@@ -149,6 +150,7 @@ const Auth: NextPage = () => {
         onChange={e => setPasswordRepeat(e.target.value)}
         aria-checked={passSuccess}
         aria-invalid={passError}
+        placeholder='Введите пароль повторно'
       />
       { userError && <Error>Введенные пароль или почта неправильные</Error> }
       { passError && <Error>Пароли не совпадают</Error> }

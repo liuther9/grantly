@@ -22,7 +22,7 @@ const slides = [
 
 const Welcome: NextPage = () => {
   return <Fragment>
-    {/* <IntroCarousel slides={slides} /> */}
+    <IntroCarousel slides={slides} />
   </Fragment>
 }
 
