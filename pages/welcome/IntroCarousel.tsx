@@ -16,11 +16,15 @@ const Embla = styled.div`
 	overflow: hidden;
   width: 240px;
 	height: 240px;
+  margin-top: 40px;
+  margin-bottom: 24px;
 `
 
 const EmblaContainer = styled.div`
   display: flex;
   user-select: none;
+  min-width: 100%;
+	min-height: 100%;
 `
 
 const EmblaSlide = styled.div`
@@ -30,8 +34,8 @@ const EmblaSlide = styled.div`
 `
 const ImgContainer = styled.div`
 	position: relative;
-	width: calc(100% - 32px);
-	min-height: 160px;
+  /* min-width: 90%; */
+	min-height: 100%;
 	margin: 0 auto 16px;
   overflow: hidden;
   border-radius: 24px;
