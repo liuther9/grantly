@@ -33,11 +33,17 @@ const ProgressBar = styled.div`
 `
 
 const TopContainer = styled.section`
+	position: sticky;
+	z-index: 1;
+	top: 44px;
+	left: 0;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 100%;
-	padding: 30px 16px;
+	background-color: #FFFFFF;
+	padding: 30px 16px 10px;
+	margin-bottom: 20px;
 	svg {
 		font-size: 24px;
 	}

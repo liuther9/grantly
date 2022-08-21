@@ -14,7 +14,7 @@ type PropType = {
 
 const Embla = styled.div`
 	overflow: hidden;
-  width: 240px;
+  width: 260px;
 	height: 240px;
   margin-top: 40px;
   margin-bottom: 24px;
@@ -34,9 +34,9 @@ const EmblaSlide = styled.div`
 `
 const ImgContainer = styled.div`
 	position: relative;
-  /* min-width: 90%; */
+  width: 240px;
 	min-height: 100%;
-	margin: 0 auto 16px;
+	margin: 0 auto;
   overflow: hidden;
   border-radius: 24px;
 `

@@ -6,7 +6,7 @@ import Image from "next/image"
 const StyledHeader = styled.header`
 	position: sticky;
 	position: -webkit-sticky;
-	z-index: 1;
+	z-index: 2;
 	top: 0;
 	left: 0;
 	width: 100%;

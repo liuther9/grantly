@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Header from './Header'
 
 const Main = styled.main`
+	/* position: relative; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
