@@ -40,6 +40,7 @@ const MobileOtherTrackers = (props: Props) => {
 	const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 	const [nextSlide, setNextSlide] = useState()
 	const { options, slides } = props
+  const [scaleValues, setScaleValues] = useState<number[]>([]);
 	const [emblaRef, embla] = useEmblaCarousel({loop: true, skipSnaps: false})
 
 	useEffect(() => { embla && setScrollSnaps(embla.scrollSnapList()) }, [embla])
@@ -50,6 +51,10 @@ const MobileOtherTrackers = (props: Props) => {
 	// 	embla?.on('scroll', () => console.log((embla?.scrollProgress())))
 		
 	// }, [currentSlide, embla, scrollSnaps])
+	// const SCALE_FACTOR = 3;
+
+	// const numberWithinRange = (number: number, min: number, max: number) =>
+	// 	Math.min(Math.max(number, min), max);
   // const onScroll = useCallback(() => {
   //   if (!embla) return;
 
