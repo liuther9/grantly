@@ -5,7 +5,8 @@ interface IQuestionnare {
 	birthdate: string,
 	careers: string,
 	average: string,
-	olymps: string,	
+	olymps: string,
+	sex: string,
 }
 
 export { IQuestionnare }

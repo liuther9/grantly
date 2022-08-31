@@ -9,6 +9,7 @@ const initialState: IQuestionnare = {
 	careers: '',
 	average: '',
 	olymps: '',
+	sex: '',
 }
 
 export const questionnaireSlice = createSlice({

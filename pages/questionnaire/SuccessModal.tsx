@@ -1,7 +1,7 @@
-import Button from 'components/Buttons'
 import Image from 'next/future/image'
 import { useEffect, SetStateAction, Dispatch, MouseEvent } from 'react'
 import styled from 'styled-components'
+import Button from 'components/Button'
 import { _GRAY, _PURPLE } from 'styles/variables'
 
 const StyledWrapper = styled.div`

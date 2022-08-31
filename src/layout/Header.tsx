@@ -1,9 +1,13 @@
 import styled from "styled-components"
 import { FiCalendar, FiUser } from 'react-icons/fi'
-import { _LIGHT_PURPLE } from "styles/variables"
+import { _LIGHT_PURPLE, _TABLET } from "styles/variables"
 import Image from "next/image"
 
-const StyledHeader = styled.header`
+type Props = {
+	showHeader: boolean,
+	userImg?: string,
+}
+const StyledHeader = styled.header<{ showHeader: boolean }>`
 	position: sticky;
 	position: -webkit-sticky;
 	z-index: 2;
@@ -11,11 +15,14 @@ const StyledHeader = styled.header`
 	left: 0;
 	width: 100%;
 	height: 64px;
-	display: flex;
+	display: ${p => p.showHeader ? 'flex' : 'none'};
 	align-items: center;
 	justify-content: space-between;
 	background-color: ${_LIGHT_PURPLE};
 	padding: 16px;
+	@media (max-width: ${_TABLET}) {
+		display: flex;
+	}
 `
 
 const ImgContainer = styled.div`
@@ -29,9 +36,9 @@ const ImgContainer = styled.div`
 	border-radius: 32px;
 `
 
-const Header: React.FC<any> = ({ userImg }) => {
+const Header: React.FC<Props> = ({ userImg, showHeader }) => {
 	return (
-		<StyledHeader>
+		<StyledHeader showHeader={showHeader}>
 			<FiCalendar />
 			<ImgContainer>
 				{ userImg

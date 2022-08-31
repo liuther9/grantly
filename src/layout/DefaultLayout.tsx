@@ -1,22 +1,28 @@
+import { useRouter } from 'next/router'
 import { Fragment } from 'react'
 import styled from 'styled-components'
+import { _TABLET } from 'styles/variables'
 import Header from './Header'
 
-const Main = styled.main`
-	/* position: relative; */
+const Main = styled.main<{ showHeader: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
 	width: 100vw;
-	height: calc(100vh - 64px);
+	height: ${p => p.showHeader ? 'calc(100vh - 64px)' : '100vh'};
+	@media (max-width: ${_TABLET}) {
+		
+	}
 `
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+	const router = useRouter()
+	const showHeader = router.route !== '/welcome'
 	return (
 		<Fragment>
-			<Header></Header>
-			<Main>{children}</Main>
+			<Header showHeader={showHeader}></Header>
+			<Main showHeader={showHeader}>{children}</Main>
 		</Fragment>
 	)
 }
