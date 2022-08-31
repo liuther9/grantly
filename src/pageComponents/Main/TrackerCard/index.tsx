@@ -1,6 +1,7 @@
 import Image from 'next/future/image'
 import styled from 'styled-components'
 import { BsClock } from 'react-icons/bs'
+import { Btn } from 'pagecomponents/Main/CommonComponents'
 import { _DARK_GRAY_1, _LIGHT_GRAY, _PURPLE } from 'styles/variables'
 
 type Props = {
@@ -35,7 +36,6 @@ const H1 = styled.h1`
 	}
 `
 const Paragraph = styled.p`
-	font-weight: 400;
 	font-size: 12px;
 	line-height: 16px;
 	margin-bottom: 16px;
@@ -46,16 +46,6 @@ const BottomContainer = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-`
-
-const Btn = styled.button`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 8px 16px;
-	border-radius: 16px;
-	border: none;
-	color: ${_DARK_GRAY_1};
 `
 
 const TimeContainer = styled.div`
@@ -72,7 +62,6 @@ const TimeContainer = styled.div`
 const StyledTime = styled.span`
 	display: flex;
 	align-items: center;
-	font-weight: 400;
 	font-size: 12px;
 	line-height: 16px;
 	color: ${_LIGHT_GRAY};

@@ -1,12 +1,13 @@
-import Button from "components/Button";
-import styled from "styled-components";
-import { _DARK_GRAY, _PURPLE } from "styles/variables";
+import Button from 'components/Button'
+import styled from 'styled-components'
+import { _DARK_GRAY, _PURPLE } from 'styles/variables'
+import { Paragraph } from 'pagecomponents/Main/CommonComponents'
 
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding: 24px 16px 40px;
+	padding: 24px 0 40px;
 `
 
 const H1 = styled.h1`
@@ -14,18 +15,12 @@ const H1 = styled.h1`
 	font-size: 32px;
 	line-height: 40px;
 	margin-bottom: 8px;
-`
-
-const Paragraph = styled.p`
-	font-size: 14px;
-	line-height: 20px;
-	color: ${_DARK_GRAY};
-	width: 288px;
-	margin-bottom: 16px;
+	padding: 0 16px;
 `
 
 const BtnContainer = styled.div`
 	width: 167.5px;
+	margin: 0 16px;
 `
 
 const Greetings = () => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { _DARK_GRAY, _PURPLE } from 'styles/variables'
-import TrackerCard from 'src/pageComponents/Main/TrackerCard'
+import TrackerCard from 'src/pagecomponents/Main/TrackerCard'
 type Props = {
 	country: string
 }

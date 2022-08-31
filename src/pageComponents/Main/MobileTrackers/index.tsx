@@ -5,6 +5,7 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	margin-bottom: 48px;
 `
 
 const H1 = styled.h1`

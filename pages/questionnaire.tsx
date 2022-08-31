@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import QuestionnairePage from 'src/pageComponents/QuestionnairePage'
+import QuestionnairePage from 'src/pagecomponents/QuestionnairePage'
 
 const Questionnaire: NextPage = () => {
 	return (

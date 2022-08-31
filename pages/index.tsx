@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
 import { Fragment } from 'react'
+import MobileAnnouncement from 'pagecomponents/Main/MobileAnnouncement'
+import MobileRanking from 'pagecomponents/Main/MobileRanking'
 import useWindowSize from 'src/helpers/useWindowSize'
-import Greetings from 'src/pageComponents/Main/Greetings'
-import MobileOtherTrackers from 'src/pageComponents/Main/MobileOtherTrackers'
-import MobileTrackers from 'src/pageComponents/Main/MobileTrackers'
+import Greetings from 'src/pagecomponents/Main/Greetings'
+import MobileOtherTrackers from 'src/pagecomponents/Main/MobileOtherTrackers'
+import MobileTrackers from 'src/pagecomponents/Main/MobileTrackers'
 import styled from 'styled-components'
 import { _TABLET } from 'styles/variables'
 
@@ -21,7 +23,9 @@ const Home: NextPage = () => {
       {(width < 960) && 
         <Fragment>
           <MobileTrackers />
-          <MobileOtherTrackers slides={[]} />
+          <MobileOtherTrackers />
+          <MobileAnnouncement />
+          <MobileRanking />
         </Fragment>
       }
     </Wrapper>

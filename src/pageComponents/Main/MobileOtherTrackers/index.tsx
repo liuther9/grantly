@@ -1,95 +1,101 @@
-import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react'
-import { useCallback, useEffect, useState } from 'react'
+import Carousel from 'nuka-carousel'
 import styled from 'styled-components'
+import { H1, Paragraph, Btn } from 'pagecomponents/Main/CommonComponents'
+import { _LIGHT_GRAY } from 'styles/variables'
+import Image from 'next/future/image'
 
-type Props = {
-	options?: EmblaOptionsType
-	slides: any[]
-}
-
-const Embla = styled.div`
-	display: block;
-	overflow: hidden;
-	width: 100%;
-	height: 204px;
-	margin-bottom: 48px;
-`
-
-const EmblaContainer = styled.div`
+type Props = {}
+const arr = [
+	{
+		title: 'Великобритания',
+		img: 'uk',
+		desc: 'Эта страна является притяжением для всех стран мира в образовании. Поступайте с нами на грант',
+	},
+	{
+		title: 'Турция',
+		img: 'turkey',
+		desc: 'Эта страна является притяжением для всех стран мира в образовании. Поступайте с нами на грант',
+	},
+	{
+		title: 'Чехия',
+		img: 'czech',
+		desc: 'Эта страна является притяжением для всех стран мира в образовании. Поступайте с нами на грант',
+	},
+	{
+		title: 'Германия',
+		img: 'germany',
+		desc: 'Эта страна является притяжением для всех стран мира в образовании. Поступайте с нами на грант',
+	},
+]
+const Wrapper = styled.div`
 	display: flex;
-	min-width: 100%;
-	min-height: 100%;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 48px;
+	.slide-current {
+		z-index: 1;
+		margin-left: 11px;
+		& + .slide {
+			transform: translateX(-100px) scale(0.95) !important;
+		}
+	}
+	.slider-container {
+		margin-top: 8px;
+	}
 `
 
-const EmblaSlide = styled.div`
-	position: relative;
-	width: 336px;
-	min-height: 100%;
-`
 const TrackerContainer = styled.div`
 	min-width: 336px;
+	max-width: 336px;
 	height: 204px;
 	display: flex;
 	flex-direction: column;
+	padding: 32px 24px;
 	border-radius: 24px;
 	background: linear-gradient(89.73deg, #4b4b4b 0.31%, #212121 99.84%);
 	box-shadow: 0px 12.3603px 24.1177px rgba(0, 0, 0, 0.123802),
 		0px 5.13384px 10.0172px rgba(0, 0, 0, 0.095), 0px 1.85681px 3.62304px rgba(0, 0, 0, 0.0661981);
 `
+const TrackerTitle = styled.h1`
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	color: #ffffff;
+	margin-bottom: 8px;
+	img {
+		margin-left: 8px;
+		margin-bottom: -1px;
+	}
+`
+const TrackerP = styled.p`
+	font-size: 12px;
+	line-height: 16px;
+	width: 226px;
+	color: ${_LIGHT_GRAY};
+	margin-bottom: 24px;
+`
+
 const MobileOtherTrackers = (props: Props) => {
-	const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-	const [nextSlide, setNextSlide] = useState()
-	const { options, slides } = props
-  const [scaleValues, setScaleValues] = useState<number[]>([]);
-	const [emblaRef, embla] = useEmblaCarousel({loop: true, skipSnaps: false})
-
-	useEffect(() => { embla && setScrollSnaps(embla.scrollSnapList()) }, [embla])
-
-	// const currentSlide = embla?.scrollProgress()
-	// useEffect(() => {
-  //   if (!embla) return;
-	// 	embla?.on('scroll', () => console.log((embla?.scrollProgress())))
-		
-	// }, [currentSlide, embla, scrollSnaps])
-	// const SCALE_FACTOR = 3;
-
-	// const numberWithinRange = (number: number, min: number, max: number) =>
-	// 	Math.min(Math.max(number, min), max);
-  // const onScroll = useCallback(() => {
-  //   if (!embla) return;
-
-  //   const engine = embla.internalEngine();
-  //   const scrollProgress = embla.scrollProgress();
-
-  //   const styles = embla.scrollSnapList().map((scrollSnap, index) => {
-  //     if (!embla.slidesInView().includes(index)) return 0;
-  //     let diffToTarget = scrollSnap - scrollProgress;
-
-  //     if (engine.options.loop) {
-  //       engine.slideLooper.loopPoints.forEach((loopItem) => {
-  //         const target = loopItem.getTarget();
-  //         if (index === loopItem.index && target !== 0) {
-  //           const sign = Math.sign(target);
-  //           if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
-  //           if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
-  //         }
-  //       });
-  //     }
-  //     const scale = 1 - Math.abs(diffToTarget * SCALE_FACTOR);
-  //     return numberWithinRange(scale, 0, 1);
-  //   });
-  //   setScaleValues(styles);
-  // }, [embla, setScaleValues]);
-	
 	return (
-		<Embla ref={emblaRef}>
-			<EmblaContainer>
-				<TrackerContainer onClick={() => console.log(embla?.scrollProgress(), scrollSnaps)} />
-				<TrackerContainer onClick={() => console.log(embla?.scrollProgress(), scrollSnaps)} style={{transform:  'scale(0.9)'}} />
-				<TrackerContainer onClick={() => console.log(embla?.scrollProgress(), scrollSnaps)}  />
-				<TrackerContainer onClick={() => console.log(embla?.scrollProgress(), scrollSnaps)}  />
-			</EmblaContainer>
-		</Embla>
+		<Wrapper>
+			<H1>Другие трекеры</H1>
+			<Paragraph>Вы можете добавить еще трекеры</Paragraph>
+			<Carousel
+				slidesToShow={1}
+				withoutControls
+				animation='zoom'
+				zoomScale={0.95}
+				dragThreshold={0.2}
+			>
+				{arr.map((i) => {
+					return <TrackerContainer key={i.title}>
+						<TrackerTitle>{i.title}<Image src={`/flags/${i.img}.svg`} alt='' width={24} height={18} /></TrackerTitle>
+						<TrackerP>{i.desc}</TrackerP>
+						<Btn>Добавить</Btn>
+					</TrackerContainer>
+				})}
+			</Carousel>
+		</Wrapper>
 	)
 }
 

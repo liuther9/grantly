@@ -19,6 +19,9 @@
       "components/*": [
         "./src/components/*"
       ],
+      "pagecomponents/*": [
+        "./src/pagecomponents/*"
+      ],
       "types/*": [
         "./src/types/*"
       ],
