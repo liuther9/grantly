@@ -31,7 +31,7 @@ const Header = styled.h1`
 	}
 `
 
-const UserRank = styled.div`
+const UserRank = styled.div<{ textColor: number }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -39,16 +39,23 @@ const UserRank = styled.div`
 	height: 32px;
 	background: #ffffff;
 	border-radius: 8px;
-	color: ${_DARK_GRAY_2};
+	color: ${(p) => (p.textColor === 1 ? _LIGHT_BLUE : p.textColor === 2 ? _PURPLE_1 : _DARK_GRAY_2)};
 	margin-right: 38px;
 `
 
-const User = styled.div`
+const User = styled.div<{ bgColor: number }>`
 	display: flex;
 	align-items: center;
 	width: 100%;
 	padding: 12px 16px;
-	background-color: ${_DARK_GRAY_2};
+	background-color: ${(p) =>
+		p.bgColor === 0
+			? _YELLOW
+			: p.bgColor === 1
+			? _LIGHT_BLUE
+			: p.bgColor === 2
+			? _PURPLE_1
+			: _DARK_GRAY_2};
 	color: #fff;
 	border-radius: 16px;
 	margin-bottom: 8px;
@@ -84,18 +91,8 @@ const MobileRanking = (props: Props) => {
 				<Header>ОЧКИ</Header>
 			</HeaderContainer>
 			{arr.map((i, index) => (
-				<User
-					key={i.username}
-					style={{
-						backgroundColor:
-							index === 0 ? _YELLOW : index === 1 ? _LIGHT_BLUE : index === 2 ? _PURPLE_1 : '',
-					}}
-				>
-					<UserRank
-						style={{
-							color: index === 1 ? _LIGHT_BLUE : index === 2 ? _PURPLE_1 : '',
-						}}
-					>
+				<User key={i.username} bgColor={index}>
+					<UserRank textColor={index}>
 						{index === 0 ? (
 							<Image src={'/crown.svg'} alt='' width={25} height={23} />
 						) : (

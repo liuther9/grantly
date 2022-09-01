@@ -8,6 +8,7 @@ const _DARK_GRAY = '#787878'
 const _DARK_GRAY_1 = '#454545'
 const _DARK_GRAY_2 = '#5A5A5A'
 const _RED = '#FF7373'
+const _RED_1 = '#FF7373'
 const _LIGHT_GREEN = '#2BD75B'
 const _ORANGE = '#FF3939'
 const _BLACK = '#2D2D2D'
@@ -36,4 +37,5 @@ export {
 	_DARK_GRAY_1,
 	_DARK_GRAY_2,
 	_YELLOW,
+	_RED_1,
 }

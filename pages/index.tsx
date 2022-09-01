@@ -15,12 +15,12 @@ const Wrapper = styled.section`
   width: 100%;
 `
 
-const Home: NextPage = () => {
+const Main: NextPage = () => {
   const { width, height } = useWindowSize()
   return (
     <Wrapper>
       <Greetings />
-      {(width < 960) && 
+      {(width < 11960) && 
         <Fragment>
           <MobileTrackers />
           <MobileOtherTrackers />
@@ -32,4 +32,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Main
