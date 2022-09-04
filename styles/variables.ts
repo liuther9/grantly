@@ -1,5 +1,6 @@
 const _LIGHT_PURPLE = '#F7F8FF'
 const _PURPLE = '#7381FF'
+const _DARK_PURPLE = '#626FDE'
 const _PURPLE_1 = '#8000FF'
 const _LIGHT_GRAY = '#EBEBEB'
 const _LIGHT_GRAY_1 = '#B5B5B5'
@@ -21,6 +22,7 @@ const _TABLET = '960px'
 export {
 	_LIGHT_PURPLE,
 	_PURPLE,
+	_DARK_PURPLE,
 	_PURPLE_1,
 	_LIGHT_GRAY,
 	_LIGHT_GRAY_1,

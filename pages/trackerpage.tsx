@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import Tracker from 'pagecomponents/Tracker'
-import WelcomePage from 'src/pagecomponents/Welcome'
+import Tracker from 'pagecomponents/Main/Tracker'
 
 const TrackerPage: NextPage = () => {
 	const router = useRouter()

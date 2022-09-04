@@ -31,8 +31,13 @@ const ButtonContainer = styled.div`
 	width: 100%;
 	padding: 16px;
 	background: transparent;
-	&:first-child {
-		margin-right: 8px;
+	button {
+		width: 240px;
+	}
+	@media (max-width: ${_TABLET}) {
+		button {
+			width: 100%;
+		}
 	}
 `
 
