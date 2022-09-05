@@ -14,13 +14,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "components/*": [
         "./src/components/*"
-      ],
-      "pagecomponents/*": [
-        "./src/pagecomponents/*"
       ],
       "types/*": [
         "./src/types/*"
@@ -39,6 +36,9 @@
       ],
       "api/*": [
         "./src/api/*"
+      ],
+      "pagecomponents/*": [
+        "./src/pagecomponents/*"
       ],
     }
   },
