@@ -40,9 +40,6 @@
       "pagecomponents/*": [
         "src/pagecomponents/*"
       ],
-      "pagecomponents": [
-        "src/pagecomponents"
-      ],
     },
     "typeRoots": [ "./types", "./node_modules/@types"]
   },
