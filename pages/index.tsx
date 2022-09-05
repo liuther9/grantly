@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { Fragment } from 'react'
-import MobileAnnouncement from 'pagecomponents/Main/MobileAnnouncement/index'
+import MobileAnnouncement from 'pagecomponents/Main/MobileAnnouncement'
 import MobileRanking from 'pagecomponents/Main/MobileRanking'
 import useWindowSize from 'src/helpers/useWindowSize'
 import Greetings from 'src/pagecomponents/Main/Greetings'
