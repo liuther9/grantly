@@ -20,7 +20,7 @@
         "./src/components/*"
       ],
       "pagecomponents/*": [
-        "src/pagecomponents/*"
+        "./src/pagecomponents/*"
       ],
       "types/*": [
         "./src/types/*"
@@ -28,8 +28,8 @@
       "constants/*": [
         "./src/constants/*"
       ],
-      "layout": [
-        "./src/layout"
+      "layout/*": [
+        "./src/layout/*"
       ],
       "pages/*": [
         "./src/pages/*"
