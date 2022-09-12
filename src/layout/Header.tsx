@@ -1,7 +1,8 @@
 import styled from "styled-components"
 import { FiCalendar, FiUser } from 'react-icons/fi'
 import { _LIGHT_PURPLE, _TABLET } from "styles/variables"
-import Image from "next/image"
+import Image from "next/future/image"
+import { useAppSelector } from "store/hooks"
 
 type Props = {
 	showHeader: boolean,
@@ -37,12 +38,14 @@ const ImgContainer = styled.div`
 `
 
 const Header: React.FC<Props> = ({ userImg, showHeader }) => {
+	const user = useAppSelector(state => state.userSlice)
+	console.log(user)
 	return (
 		<StyledHeader showHeader={showHeader}>
 			<FiCalendar />
 			<ImgContainer>
-				{ userImg
-					? <Image src={userImg} alt='' width={32} height={32} />
+				{ user.id.length !== 0
+					? <Image src={user.profilePic} alt='' width={32} height={32} />
 					: <FiUser size={24} />
 				}
 			</ImgContainer>

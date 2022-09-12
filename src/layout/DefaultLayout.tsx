@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
+import { useUser } from 'src/utils/useUser'
 import styled from 'styled-components'
 import { _TABLET } from 'styles/variables'
 import Header from './Header'
@@ -19,6 +20,7 @@ const Main = styled.main<{ showHeader: boolean }>`
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 	const router = useRouter()
 	const showHeader = router.route !== '/welcome'
+	const [user, logout] = useUser()
 	return (
 		<Fragment>
 			<Header showHeader={showHeader}></Header>

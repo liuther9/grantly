@@ -2,6 +2,7 @@ import Button from 'components/Button'
 import styled from 'styled-components'
 import { _DARK_GRAY, _PURPLE } from 'styles/variables'
 import { Paragraph } from 'pagecomponents/Main/CommonComponents'
+import { useAppSelector } from 'store/hooks'
 
 const Wrapper = styled.div`
 	display: flex;
@@ -24,9 +25,10 @@ const BtnContainer = styled.div`
 `
 
 const Greetings = () => {
+	const username = useAppSelector(state => state.userSlice.name)
 	return (
 		<Wrapper>
-			<H1>Привет, {'Асанали'}</H1>
+			<H1>Привет, {username}</H1>
 			<Paragraph>Скачай разбор про тебя после прохождения анкеты и узнай результаты</Paragraph>
 			<BtnContainer>
 				<Button styles={{ color: _PURPLE }}>Скачать (PDF)</Button>

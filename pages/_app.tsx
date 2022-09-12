@@ -9,11 +9,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<Fragment>
 			<GlobalStyle />
-			<DefaultLayout>
-				<Provider store={store}>
+			<Provider store={store}>
+				<DefaultLayout>
 					<Component {...pageProps} />
-				</Provider>
-			</DefaultLayout>
+				</DefaultLayout>
+			</Provider>
 		</Fragment>
 	)
 }

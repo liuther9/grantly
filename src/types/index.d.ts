@@ -1,12 +1,20 @@
 interface IQuestionnare {
-	instagram: string,
-	name: string,
-	city: string,
-	birthdate: string,
-	careers: string,
-	average: string,
-	olymps: string,
-	sex: string,
+	instagram: string
+	name: string
+	city: string
+	birthdate: string
+	careers: string
+	average: string
+	olymps: string
+	sex: string
 }
 
-export { IQuestionnare }
+interface IUser {
+	id: string
+	email: string
+	token: string
+	name: string
+	profilePic: string
+}
+
+export { IQuestionnare, IUser }

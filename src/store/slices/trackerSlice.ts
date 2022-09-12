@@ -5,7 +5,7 @@ const initialState = {
 	show: false
 }
 
-export const trakcerSlice = createSlice({
+export const trackerSlice = createSlice({
   name: 'tracker',
   initialState,
   reducers: {
@@ -16,6 +16,6 @@ export const trakcerSlice = createSlice({
 	},
 })
 
-export const { showTracker } = trakcerSlice.actions
+export const { showTracker } = trackerSlice.actions
 
-export default trakcerSlice.reducer
+export default trackerSlice.reducer
