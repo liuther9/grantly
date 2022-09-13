@@ -39,7 +39,7 @@ const ImgContainer = styled.div`
 
 const Header: React.FC<Props> = ({ userImg, showHeader }) => {
 	const user = useAppSelector(state => state.userSlice)
-	console.log(user)
+
 	return (
 		<StyledHeader showHeader={showHeader}>
 			<FiCalendar />

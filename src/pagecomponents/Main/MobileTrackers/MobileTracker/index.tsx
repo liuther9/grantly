@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { _BLACK, _DARK_GRAY, _PURPLE, _TABLET } from 'styles/variables'
 import TrackerCard from 'src/pagecomponents/Main/TrackerCard'
 type Props = {
-	country: string
+	flag: string
 }
 const Wrapper = styled.div`
 	display: flex;
@@ -48,20 +48,20 @@ const Trackers = styled.div`
 	}
 `
 
-const MobileTracker: React.FC<Props> = ({ country }) => {
-	let flag = ''
-	switch (country) {
-		case 'Турция':
-			flag = 'turkey'
+const MobileTracker: React.FC<Props> = ({ flag }) => {
+	let country = ''
+	switch (flag) {
+		case 'turkey':
+			country = 'Турция'
 			break
-		case 'Чехия':
-			flag = 'czech'
+		case 'czech':
+			country = 'Чехия'
 			break
-		case 'Германия':
-			flag = 'germany'
+		case 'germany':
+			country = 'Германия'
 			break
-		case 'Великобритания':
-			flag = 'uk'
+		case 'uk':
+			country = 'Великобритания'
 			break
 
 		default:

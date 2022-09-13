@@ -19,9 +19,9 @@ const MobileTrackers = () => {
 	return (
 		<Wrapper>
 			<H1>Трекеры</H1>
-			<MobileTracker country={"Турция"} />
-			<MobileTracker country={"Чехия"} />
-			<MobileTracker country={"Германия"} />
+			<MobileTracker flag={"turkey"} />
+			<MobileTracker flag={"czech"} />
+			<MobileTracker flag={"germany"} />
 		</Wrapper>
 	)
 }

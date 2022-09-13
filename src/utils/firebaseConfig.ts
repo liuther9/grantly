@@ -20,7 +20,7 @@ const firebaseConfig = {
 // Initialize Firebase
 
 let app = null
-let db = null
+let db: any = null
 let analytics = null
 
 function initFirebase() {

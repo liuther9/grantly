@@ -128,7 +128,7 @@ const Tracker = (props: Props) => {
 		<Wrapper>
 			<TopContainer>
 				<FiChevronLeft onClick={() => dispatch(showTracker(false))} />
-				<Step>{'1'}-ый этап</Step>
+				<Step>{'1'}-й этап</Step>
 			</TopContainer>
 			<Player />
 			<H1>{'Вебинар об образовании в Турции'}</H1>

@@ -15,6 +15,13 @@ interface IUser {
 	token: string
 	name: string
 	profilePic: string
+	trackers: any[]
 }
 
-export { IQuestionnare, IUser }
+interface ITracker {
+	title: string
+	name: string
+	private: boolean
+}
+
+export { IQuestionnare, IUser, ITracker }

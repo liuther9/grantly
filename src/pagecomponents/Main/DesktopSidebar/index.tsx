@@ -8,8 +8,9 @@ import { Header, Nav, StyledBtn, StyledDetails, StyledLi, Wrapper } from './styl
 import Link from 'next/link'
 import styled from 'styled-components'
 import { MdOutlineCopyright } from 'react-icons/md'
+import { useAppSelector } from 'store/hooks'
 
-type Props = {}
+type Props = { tracker: string, setTracker: (i: string) => void }
 
 const StyledLink = styled.span`
 	font-size: 14px;
@@ -37,9 +38,9 @@ const StyledCopyright = styled.div`
 	}
 `
 
-const DesktopSidebar = (props: Props) => {
+const DesktopSidebar:React.FC<Props> = ({ tracker, setTracker }) => {
+	const user = useAppSelector(state => state.userSlice)
 	const [category, setCategory] = useState('')
-	const [tracker, setTracker] = useState('')
 
 	return (
 		<Wrapper>
@@ -64,14 +65,14 @@ const DesktopSidebar = (props: Props) => {
 						<RiArrowDownSLine />
 					</summary>
 					<ul>
-						{countries.map((i) => (
+						{user.trackers.map((i) => (
 							<StyledLi
-								key={i.flag}
-								chosen={i.title === tracker}
-								onClick={() => setTracker(i.title)}
+								key={i}
+								chosen={i === tracker}
+								onClick={() => setTracker(i)}
 							>
-								<Image src={`/flags/${i.flag}.svg`} alt='' width={20} height={14} />
-								{i.title}
+								<Image src={`/flags/${i}.svg`} alt='' width={20} height={14} />
+								{i === 'czech' ? 'Чехия' : i === 'turkey' ? 'Турция' : i === 'germany' ? 'Германия' : i === 'uk' ? 'Великобритания' : i === 'usa' ? 'США' : ''}
 							</StyledLi>
 						))}
 					</ul>

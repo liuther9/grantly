@@ -6,7 +6,8 @@ const initialState:IUser = {
 	email: '',
 	token: '',
 	name: '',
-	profilePic: ''
+	profilePic: '',
+	trackers: []
 }
 
 export const userSlice = createSlice({
@@ -16,7 +17,12 @@ export const userSlice = createSlice({
     setUser: (
       state,
       { payload }
-		) => (state = payload),
+		) => {
+			return {
+				...state,
+				...payload
+			}
+		},
 	},
 })
 
