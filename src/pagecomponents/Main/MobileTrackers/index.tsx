@@ -1,5 +1,10 @@
 import styled from "styled-components"
+import { ITracker } from "types/index"
 import MobileTracker from "./MobileTracker"
+
+type Props = {
+	trackers: ITracker[]
+}
 
 const Wrapper = styled.div`
 	display: flex;
@@ -15,13 +20,11 @@ const H1 = styled.h1`
 	padding: 16px;
 `
 
-const MobileTrackers = () => {
+const MobileTrackers: React.FC<Props> = ({ trackers }) => {
 	return (
 		<Wrapper>
 			<H1>Трекеры</H1>
-			<MobileTracker flag={"turkey"} />
-			<MobileTracker flag={"czech"} />
-			<MobileTracker flag={"germany"} />
+			{trackers && trackers.map(tracker => <MobileTracker key={tracker.title} title={tracker.title} country={tracker.name} />)}
 		</Wrapper>
 	)
 }

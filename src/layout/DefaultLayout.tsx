@@ -13,7 +13,7 @@ const Main = styled.main<{ showHeader: boolean }>`
 	width: 100vw;
 	height: ${p => p.showHeader ? 'calc(100vh - 64px)' : '100vh'};
 	@media (max-width: ${_TABLET}) {
-		
+		height: calc(100vh - 64px);
 	}
 `
 

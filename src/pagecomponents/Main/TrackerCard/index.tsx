@@ -5,10 +5,12 @@ import { Btn } from 'pagecomponents/Main/CommonComponents'
 import { _DARK_GRAY_1, _DARK_PURPLE, _LIGHT_GRAY, _PURPLE, _TABLET } from 'styles/variables'
 import { useAppDispatch } from 'store/hooks'
 import { showTracker } from 'store/slices/trackerSlice'
+import { IStage } from 'types/index'
 
 type Props = {
 	imgUrl: string
 	country: string
+	stage: IStage
 }
 
 const Wrapper = styled.div`
@@ -103,19 +105,25 @@ const StyledTime = styled.span`
 	color: ${_LIGHT_GRAY};
 `
 
-const TrackerCard: React.FC<Props> = ({ imgUrl, country }) => {
+const TrackerCard: React.FC<Props> = ({ imgUrl, country, stage }) => {
 	const dispatch = useAppDispatch()
+	const { duration, name } = stage
+	const convertTime = (minutes: number) => {
+		const hours = Math.floor(minutes / 60)
+		const remainingMinutes = minutes - (hours * 60)
+		return [hours, remainingMinutes]
+	}
 	return (
 		<Wrapper>
 			<H1>
-				1-й этап <Image src={`/flags/${imgUrl}.svg`} alt='turkey' width={24} height={18} />
+				{name} <Image src={`/flags/${imgUrl}.svg`} alt='turkey' width={24} height={18} />
 			</H1>
-			<Paragraph>Онлайн-вебинар о {country.replace(/.$/, 'и')}</Paragraph>
+			<Paragraph>Онлайн-вебинар о {country?.replace(/.$/, 'и')}</Paragraph>
 			<BottomContainer>
-				<Btn onClick={() => dispatch(showTracker(true))}>Продолжить</Btn>
+				<Btn onClick={() => dispatch(showTracker({show: true, stage}))}>Продолжить</Btn>
 				<TimeContainer>
 					<BsClock />
-					<StyledTime>1 час 45 мин.</StyledTime>
+					<StyledTime>{convertTime(duration)[0]} час {convertTime(duration)[1]} мин.</StyledTime>
 				</TimeContainer>
 			</BottomContainer>
 		</Wrapper>

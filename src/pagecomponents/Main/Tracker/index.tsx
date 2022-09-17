@@ -1,13 +1,12 @@
-import Button from 'components/Button'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { FiCalendar, FiChevronLeft } from 'react-icons/fi'
-import { useAppDispatch } from 'store/hooks'
-import { showTracker } from 'store/slices/trackerSlice'
 import styled from 'styled-components'
-import { _DARK_GRAY, _LIGHT_GRAY, _PURPLE, _RED_1, _TABLET } from 'styles/variables'
+import Button from 'components/Button'
 import Player from './Player'
-
-type Props = {}
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import { showTracker } from 'store/slices/trackerSlice'
+import { _DARK_GRAY, _LIGHT_GRAY, _PURPLE, _RED_1, _TABLET } from 'styles/variables'
+import useWindowSize from 'src/helpers/useWindowSize'
 
 const Wrapper = styled.div`
 	z-index: 1;
@@ -121,42 +120,43 @@ const BtnContainer = styled.div`
 		padding: 8px 16px;
 	}
 `
-const Tracker = (props: Props) => {
-	const [live, setLive] = useState(true)
+const Tracker = () => {
 	const dispatch = useAppDispatch()
+	const state = useAppSelector(state => state.trackerSlice)
+	const { title, name, live, description, date } = { ...state.stage }
+	const { width } = useWindowSize()
+	
+  useEffect(() => {
+    const body = document.querySelector('body')
+		if (body && width < 960) body.style.overflow = 'hidden'
+		return () => {
+			if (body && width < 960) body.style.overflow = 'auto';
+		}
+	}, [width])
+
 	return (
 		<Wrapper>
 			<TopContainer>
-				<FiChevronLeft onClick={() => dispatch(showTracker(false))} />
-				<Step>{'1'}-й этап</Step>
+				<FiChevronLeft onClick={() => dispatch(showTracker({show: false}))} />
+				<Step>{name}</Step>
 			</TopContainer>
-			<Player />
-			<H1>{'Вебинар об образовании в Турции'}</H1>
+			<Player url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+			<H1>{title}</H1>
 			<WebinarTime>
-				{live && (
+				{!live && (
 					<Fragment>
-						<FiCalendar /> {'Ежедневно в 11:00 (Нур-Султан)'}
+						<FiCalendar />{date}
 					</Fragment>
 				)}
-				{!live && (
+				{live && (
 					<Fragment>
 						<LiveIcon /> <span>LIVE</span>{' '}
 					</Fragment>
 				)}
 			</WebinarTime>
-			<Content>
-				{
-					'Стипендиальная программа, которая обеспечивает не только финансовую поддержку, но и помогает студентам зачислиться в университет! '
-				}
-			</Content>
+			<Content>{description}</Content>
 			<BtnContainer>
-				<Button
-					styles={{
-						color: _PURPLE,
-					}}
-				>
-					{'Запланировать'}
-				</Button>
+				<Button styles={{ color: _PURPLE }}>{'Запланировать'}</Button>
 			</BtnContainer>
 		</Wrapper>
 	)

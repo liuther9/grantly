@@ -1,8 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IQuestionnare } from 'types/index'
+import { createSlice } from '@reduxjs/toolkit'
+import { IStage } from 'types/index'
 
-const initialState = {
-	show: false
+type Type = { show: boolean, stage: IStage | null }
+const initialState:Type = {
+  show: false,
+  stage: null
 }
 
 export const trackerSlice = createSlice({
@@ -12,7 +14,12 @@ export const trackerSlice = createSlice({
     showTracker: (
       state,
       { payload }
-		) => {state.show = payload},
+    ) => {
+      return {
+        ...state,
+        ...payload
+      }
+    },
 	},
 })
 

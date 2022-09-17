@@ -22,6 +22,19 @@ interface ITracker {
 	title: string
 	name: string
 	private: boolean
+	description: string
 }
 
-export { IQuestionnare, IUser, ITracker }
+interface IStage {
+	button: string
+	date: string
+	description: string
+	duration: number
+	id: number
+	live: boolean
+	name: string
+	url: string
+	title: string
+}
+
+export { IQuestionnare, IUser, ITracker, IStage }

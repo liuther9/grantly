@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 import { _BLACK, _DARK_GRAY, _PURPLE, _TABLET } from 'styles/variables'
 import TrackerCard from 'src/pagecomponents/Main/TrackerCard'
+import { getDocs, collection, Timestamp } from 'firebase/firestore'
+import { db } from 'src/utils/firebaseConfig'
+import { useEffect, useState } from 'react'
 type Props = {
-	flag: string
+	title: string
+	country: string
 }
 const Wrapper = styled.div`
 	display: flex;
@@ -37,44 +41,41 @@ const Trackers = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	overflow-y: scroll;
+	overflow-y: auto;
 	padding-left: 19px;
 	@media (max-width: ${_TABLET}) {
 		flex-direction: row;
 		align-items: center;
 		overflow-y: visible;
-		overflow-x: scroll;
+		overflow-x: auto;
 		padding-left: 0;
 	}
 `
 
-const MobileTracker: React.FC<Props> = ({ flag }) => {
-	let country = ''
-	switch (flag) {
-		case 'turkey':
-			country = 'Турция'
-			break
-		case 'czech':
-			country = 'Чехия'
-			break
-		case 'germany':
-			country = 'Германия'
-			break
-		case 'uk':
-			country = 'Великобритания'
-			break
+const MobileTracker: React.FC<Props> = ({ title, country }) => {
+	const [stages, setStages] = useState<any[]>([])
 
-		default:
-			break
-	}
+	//GET STAGES OF TRACKER
+	useEffect(() => {
+		const showData = async () => {
+			let d: any = []
+			const trackerStages = await getDocs(collection(db, `trackers/${title}/stages`))
+			trackerStages.forEach((stage) => {
+				if (!d.find((i: any) => i.id === stage.data()['id'])) {
+					const date = new Timestamp(stage.data()['date']['seconds'], stage.data()['date']['nanoseconds']).toDate().toLocaleString('ru-RU')
+					d.push({ ...stage.data(), date })
+				}
+			})
+			setStages(d)
+		}
+		showData()
+	}, [title])
+
 	return (
 		<Wrapper>
 			<TrackerName>{country}</TrackerName>
 			<Trackers>
-				<TrackerCard imgUrl={flag} country={country} />
-				<TrackerCard imgUrl={flag} country={country} />
-				<TrackerCard imgUrl={flag} country={country} />
-				<TrackerCard imgUrl={flag} country={country} />
+				{stages.map(stage => <TrackerCard key={stage.id} imgUrl={title} country={country} stage={stage} />)}
 			</Trackers>
 		</Wrapper>
 	)

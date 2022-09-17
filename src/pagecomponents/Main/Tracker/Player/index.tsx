@@ -1,10 +1,14 @@
 import { IoPlaySharp } from 'react-icons/io5'
 import styled from 'styled-components'
+import ReactPlayer from 'react-player'
 import { _LIGHT_GRAY, _TABLET } from 'styles/variables'
 
-type Props = {}
+type Props = {
+	url: string
+}
 
 const Wrapper = styled.div`
+	position: relative;
 	width: 100%;
 	height: 216px;
 	background-color: ${_LIGHT_GRAY};
@@ -13,6 +17,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 16px;
+	overflow: hidden;
 	@media (max-width: ${_TABLET}) {
 		width: calc(100% - 32px);
 		margin: 0 16px 14px;
@@ -33,12 +38,15 @@ const Btn = styled.button`
 	}
 `
 
-const Player = (props: Props) => {
+const Player: React.FC<Props> = ({ url }) => {
 	return (
 		<Wrapper>
-			<Btn>
-				<IoPlaySharp />
-			</Btn>
+			{url.length > 0 && <ReactPlayer url={url} height={216} controls />}
+			{url.length === 0 && (
+				<Btn>
+					<IoPlaySharp />
+				</Btn>
+			)}
 		</Wrapper>
 	)
 }

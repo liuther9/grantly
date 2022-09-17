@@ -1,8 +1,9 @@
 import Carousel from 'nuka-carousel'
 import styled from 'styled-components'
-import { H1, Paragraph, Btn } from 'pagecomponents/Main/CommonComponents'
+import { H1, Paragraph } from 'pagecomponents/Main/CommonComponents'
 import { _LIGHT_GRAY } from 'styles/variables'
-import Image from 'next/future/image'
+import OtherTracker from '../OtherTracker'
+import { useAppSelector } from 'store/hooks'
 
 type Props = {}
 const arr = [
@@ -75,7 +76,8 @@ const TrackerP = styled.p`
 	margin-bottom: 24px;
 `
 
-const MobileOtherTrackers = (props: Props) => {
+const MobileOtherTrackers: React.FC<Props> = ({ }) => {
+	const otherTrackers = useAppSelector(state => state.trackersSlice.otherTrackers)
 	return (
 		<Wrapper>
 			<H1>Другие трекеры</H1>
@@ -87,12 +89,8 @@ const MobileOtherTrackers = (props: Props) => {
 				zoomScale={0.95}
 				dragThreshold={0.2}
 			>
-				{arr.map((i) => {
-					return <TrackerContainer key={i.title}>
-						<TrackerTitle>{i.title}<Image src={`/flags/${i.img}.svg`} alt='' width={24} height={18} /></TrackerTitle>
-						<TrackerP>{i.desc}</TrackerP>
-						<Btn>Добавить</Btn>
-					</TrackerContainer>
+				{otherTrackers.map((i) => {
+					return <OtherTracker otherTracker={i} key={i.title} />
 				})}
 			</Carousel>
 		</Wrapper>

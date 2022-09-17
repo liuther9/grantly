@@ -10,7 +10,12 @@ import styled from 'styled-components'
 import { MdOutlineCopyright } from 'react-icons/md'
 import { useAppSelector } from 'store/hooks'
 
-type Props = { tracker: string, setTracker: (i: string) => void }
+type Props = {
+	tracker: string
+	setTracker: (i: string) => void
+	category: string
+	setCategory: React.Dispatch<React.SetStateAction<string>>
+}
 
 const StyledLink = styled.span`
 	font-size: 14px;
@@ -38,9 +43,8 @@ const StyledCopyright = styled.div`
 	}
 `
 
-const DesktopSidebar:React.FC<Props> = ({ tracker, setTracker }) => {
+const DesktopSidebar:React.FC<Props> = ({ tracker, setTracker, category, setCategory }) => {
 	const user = useAppSelector(state => state.userSlice)
-	const [category, setCategory] = useState('')
 
 	return (
 		<Wrapper>
@@ -104,24 +108,5 @@ const DesktopSidebar:React.FC<Props> = ({ tracker, setTracker }) => {
 		</Wrapper>
 	)
 }
-
-const countries = [
-	{
-		title: 'Турция',
-		flag: 'turkey',
-	},
-	{
-		title: 'Чехия',
-		flag: 'czech',
-	},
-	{
-		title: 'Германия',
-		flag: 'germany',
-	},
-	{
-		title: 'Великобритания',
-		flag: 'uk',
-	},
-]
 
 export default DesktopSidebar
