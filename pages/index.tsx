@@ -1,22 +1,25 @@
 import type { NextPage } from 'next'
 import { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
+// Components
 import MobileAnnouncement from 'pagecomponents/Main/MobileAnnouncement'
 import MobileRanking from 'pagecomponents/Main/MobileRanking'
-import useWindowSize from 'src/helpers/useWindowSize'
-import Greetings from 'src/pagecomponents/Main/Greetings'
-import MobileOtherTrackers from 'src/pagecomponents/Main/MobileOtherTrackers'
-import MobileTrackers from 'src/pagecomponents/Main/MobileTrackers'
-import { _TABLET } from 'styles/variables'
-import DesktopSidebar from 'pagecomponents/Main/DesktopSidebar'
 import MobileTracker from 'pagecomponents/Main/MobileTrackers/MobileTracker'
+import MobileOtherTrackers from 'pagecomponents/Main/MobileOtherTrackers'
+import MobileTrackers from 'pagecomponents/Main/MobileTrackers'
+import DesktopSidebar from 'pagecomponents/Main/DesktopSidebar'
+import DesktopOtherTrackers from 'pagecomponents/Main/DesktopOtherTrackers'
+import DesktopAnnouncements from 'pagecomponents/Main/DesktopAnnouncements'
 import Tracker from 'pagecomponents/Main/Tracker'
+import Greetings from 'pagecomponents/Main/Greetings'
+// Functions and utils
+import useWindowSize from 'src/helpers/useWindowSize'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from 'src/utils/firebaseConfig'
 import { setOtherTrackers, setTrackers } from 'store/slices/trackersSlice'
-import DesktopOtherTrackers from 'pagecomponents/Main/DesktopOtherTrackers'
-import DesktopAnnouncements from 'pagecomponents/Main/DesktopAnnouncements'
+// Style
+import { _TABLET } from 'styles/variables'
 
 const Wrapper = styled.section<{ desktop: boolean }>`
 	display: flex;
@@ -31,7 +34,8 @@ const Wrapper = styled.section<{ desktop: boolean }>`
 const Main: NextPage = () => {
 	const { width } = useWindowSize()
 	const dispatch = useAppDispatch()
-	const showTracker = useAppSelector((state) => state.trackerSlice.show)
+	const trackerState = useAppSelector((state) => state.trackerSlice)
+	const { show, stage } = trackerState
 	const trackers = useAppSelector((state) => state.trackersSlice.trackers)
 	const user = useAppSelector((state) => state.userSlice)
 	const [tracker, setTracker] = useState('')
@@ -41,12 +45,12 @@ const Main: NextPage = () => {
 		const getAllTrackers = async () => {
 			const fetchedTrackers = await getDocs(collection(db, 'trackers'))
 			fetchedTrackers.forEach((item) =>
-				user.trackers.includes(item.id)
+				user.trackers?.includes(item.id)
 					? dispatch(setTrackers(item.data()))
 					: dispatch(setOtherTrackers(item.data()))
 			)
 		}
-		getAllTrackers()
+		user.trackers && getAllTrackers()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user.trackers])
 
@@ -68,7 +72,7 @@ const Main: NextPage = () => {
 							(item) =>
 								item.title === tracker && <MobileTracker title={item.title} country={item.name} />
 						)}
-					{desktopCategory === 'trackers' && <Tracker />}
+					{desktopCategory === 'trackers' && stage && <Tracker />}
 					{desktopCategory === 'otherTrackers' && <DesktopOtherTrackers />}
 					{desktopCategory === 'announcement' && <DesktopAnnouncements />}
 				</Fragment>
@@ -79,7 +83,7 @@ const Main: NextPage = () => {
 					<MobileOtherTrackers />
 					<MobileAnnouncement />
 					<MobileRanking />
-					{showTracker && <Tracker />}
+					{show && <Tracker />}
 				</Fragment>
 			)}
 		</Wrapper>

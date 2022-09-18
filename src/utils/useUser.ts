@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { db, initFirebase } from 'src/utils/firebaseConfig'
+import { getDoc, doc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { removeUserCookie, setUserCookie, getUserFromCookie } from 'src/utils/userCookie'
+import { db, initFirebase } from 'src/utils/firebaseConfig'
 import { mapUserData } from 'src/utils/mapUserData'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { setUser } from 'store/slices/userSlice'
-import { getDoc, doc } from 'firebase/firestore'
 
 initFirebase()
 
@@ -27,9 +27,6 @@ const useUser = () => {
 	}
 
 	useEffect(() => {
-		// Firebase updates the id token every hour, this
-		// makes sure the react state and the cookie are
-		// both kept up to date
 		const cancelAuthListener = auth.onIdTokenChanged(async (user) => {
 			if (user) {
 				const userData = mapUserData(user)

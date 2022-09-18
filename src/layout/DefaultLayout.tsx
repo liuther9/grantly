@@ -2,8 +2,8 @@ import { useRouter } from 'next/router'
 import { Fragment } from 'react'
 import { useUser } from 'src/utils/useUser'
 import styled from 'styled-components'
-import { _TABLET } from 'styles/variables'
 import Header from './Header'
+import { _TABLET } from 'styles/variables'
 
 const Main = styled.main<{ showHeader: boolean }>`
 	display: flex;

@@ -1,12 +1,16 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { SiApple, SiTwitter } from 'react-icons/si'
 import { GrGoogle } from 'react-icons/gr'
 import { TbBrandMeta } from 'react-icons/tb'
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import IntroCarousel from './IntroCarousel'
 import Button from 'components/Button'
 import MoreOptionsModal from './MoreOptionsModal'
 import DesktopSection from './DesktopSection'
+import { useAppSelector } from 'store/hooks'
+import { db } from 'src/utils/firebaseConfig'
 import { _BLACK, _GRAY, _LIGHT_GRAY, _PURPLE, _TABLET } from 'styles/variables'
 import {
 	ButtonContainer,
@@ -17,36 +21,30 @@ import {
 	StyledOtherMethods,
 	StyledParagraph,
 } from './style'
-import { useAppSelector } from 'store/hooks'
-import { useRouter } from 'next/router'
 
 const WelcomePage = () => {
 	const [showModal, setModal] = useState(false)
 	const router = useRouter()
 	const state = useAppSelector(state => state.userSlice)
+
 	const login = () => {
 		const provider = new GoogleAuthProvider()
 		const auth = getAuth()
 		signInWithPopup(auth, provider)
-			.then((result) => {
-				// This gives you a Google Access Token. You can use it to access the Google API.
-				const credential = GoogleAuthProvider.credentialFromResult(result)
-				const token = credential?.accessToken
-				// The signed-in user info.
-				const user = result.user
-				console.log(user)
+			.then(async (result) => {
+				const userId = result.user.uid
+				const userRef = doc(db, 'users', userId)
+				const getUser = await getDoc(userRef)
+				!getUser.data() && await setDoc(userRef, { trackers: [], score: 0 })
 				router.push('/')
 			})
 			.catch((error) => {
-				// Handle Errors here.
 				const errorCode = error.code
 				const errorMessage = error.message
-				// The email of the user's account used.
-				const email = error.customData.email
-				// The AuthCredential type that was used.
-				const credential = GoogleAuthProvider.credentialFromError(error)
+				console.error(errorCode, errorMessage)
 			})
 	}
+
 	return (
 		<Container>
 			<Section>

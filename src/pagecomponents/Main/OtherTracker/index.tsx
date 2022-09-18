@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import { _LIGHT_GRAY, _TABLET } from 'styles/variables'
 import { Btn } from 'pagecomponents/Main/CommonComponents'
 import { ITracker } from 'types/index'
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import { addTracker } from 'store/slices/trackersSlice'
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
+import { db } from 'src/utils/firebaseConfig'
 
 type Props = {
 	otherTracker: ITracker
@@ -46,7 +50,20 @@ const TrackerP = styled.p`
 	margin-bottom: 24px;
 `
 const OtherTracker: React.FC<Props> = ({ otherTracker }) => {
+	const dispatch = useAppDispatch()
+	const user = useAppSelector(state => state.userSlice)
 	const { title, description, name } = otherTracker
+
+	const addNewTracker = async () => {
+		try {
+			const res = await updateDoc(doc(db, 'users', user.id), { trackers: arrayUnion(otherTracker.title) })
+			dispatch(addTracker(otherTracker))
+			console.log(res)
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
 	return (
 		<TrackerContainer>
 			<TrackerTitle>
@@ -54,7 +71,7 @@ const OtherTracker: React.FC<Props> = ({ otherTracker }) => {
 				<Image src={`/flags/${title}.svg`} alt='' width={24} height={18} />
 			</TrackerTitle>
 			<TrackerP>{description}</TrackerP>
-			<Btn>Добавить</Btn>
+			<Btn onClick={addNewTracker}>Добавить</Btn>
 		</TrackerContainer>
 	)
 }

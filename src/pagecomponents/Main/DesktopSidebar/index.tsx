@@ -69,7 +69,7 @@ const DesktopSidebar:React.FC<Props> = ({ tracker, setTracker, category, setCate
 						<RiArrowDownSLine />
 					</summary>
 					<ul>
-						{user.trackers.map((i) => (
+						{user.trackers?.map((i) => (
 							<StyledLi
 								key={i}
 								chosen={i === tracker}

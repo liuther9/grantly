@@ -15,7 +15,7 @@ interface IUser {
 	token: string
 	name: string
 	profilePic: string
-	trackers: any[]
+	trackers: any[] | null
 }
 
 interface ITracker {
