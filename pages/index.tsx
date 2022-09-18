@@ -63,7 +63,7 @@ const Main: NextPage = () => {
 			<Greetings category={desktopCategory} />
 			{width > 960 && (
 				<Fragment>
-					{tracker.length > 0 &&
+					{desktopCategory === 'trackers' && tracker.length > 0 &&
 						trackers.map(
 							(item) =>
 								item.title === tracker && <MobileTracker title={item.title} country={item.name} />

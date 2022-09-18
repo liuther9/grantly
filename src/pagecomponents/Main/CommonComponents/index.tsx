@@ -25,5 +25,6 @@ const Btn = styled.button`
 	border-radius: 16px;
 	border: none;
 	color: ${_DARK_GRAY_1};
+	cursor: pointer;
 `
 export { H1, Paragraph, Btn }
