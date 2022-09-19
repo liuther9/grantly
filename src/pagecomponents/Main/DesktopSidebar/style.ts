@@ -66,7 +66,7 @@ const StyledDetails = styled.details<{ active: boolean }>`
 				transform: ${(p) => p.active && 'rotate(180deg)'};
 			}
 		}
-		&::marker {
+		&::marker, &::-webkit-details-marker {
 			display: none;
 			content: '';
 		}

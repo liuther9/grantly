@@ -16,6 +16,7 @@ const Wrapper = styled.div`
 		width: 244px;
 	}
 	.slide-current {
+		z-index: 1;
 		margin-left: 11px;
 		transition: all 0.15s linear;
 		& + .slide {
