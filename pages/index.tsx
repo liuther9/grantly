@@ -44,10 +44,10 @@ const Main: NextPage = () => {
 	useEffect(() => {
 		const getAllTrackers = async () => {
 			const fetchedTrackers = await getDocs(collection(db, 'trackers'))
-			fetchedTrackers.forEach((item) =>
-				user.trackers?.includes(item.id)
-					? dispatch(setTrackers(item.data()))
-					: dispatch(setOtherTrackers(item.data()))
+			fetchedTrackers.forEach((item) => dispatch(setTrackers(item.data()))
+				// user.trackers?.includes(item.id)
+				// 	? dispatch(setTrackers(item.data()))
+				// 	: dispatch(setOtherTrackers(item.data()))
 			)
 		}
 		user.trackers && getAllTrackers()
@@ -70,7 +70,7 @@ const Main: NextPage = () => {
 					{desktopCategory === 'trackers' && tracker.length > 0 &&
 						trackers.map(
 							(item) =>
-								item.title === tracker && <MobileTracker title={item.title} country={item.name} />
+								item.title === tracker && <MobileTracker key={item.title} title={item.title} country={item.name} />
 						)}
 					{desktopCategory === 'trackers' && stage && <Tracker />}
 					{desktopCategory === 'otherTrackers' && <DesktopOtherTrackers />}
@@ -80,7 +80,7 @@ const Main: NextPage = () => {
 			{width < 960 && (
 				<Fragment>
 					<MobileTrackers trackers={trackers} />
-					<MobileOtherTrackers />
+					{/* <MobileOtherTrackers /> */}
 					<MobileAnnouncement />
 					<MobileRanking />
 					{show && <Tracker />}

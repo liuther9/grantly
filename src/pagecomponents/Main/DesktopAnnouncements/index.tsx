@@ -6,6 +6,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	width: 100%;
 	padding-left: 19px;
+	overflow-y: hidden;
 	overflow-x: auto;
 `
 

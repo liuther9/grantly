@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import { FiCalendar, FiUser } from 'react-icons/fi'
+import { IoLogoReact } from 'react-icons/io5'
+import { FiUser } from 'react-icons/fi'
 import { _LIGHT_PURPLE, _TABLET } from "styles/variables"
 import Image from "next/future/image"
 import { useAppSelector } from "store/hooks"
@@ -42,7 +43,7 @@ const Header: React.FC<Props> = ({ userImg, showHeader }) => {
 
 	return (
 		<StyledHeader showHeader={showHeader}>
-			<FiCalendar />
+			<IoLogoReact />
 			<ImgContainer>
 				{ user.id.length !== 0
 					? <Image src={user.profilePic} alt='' width={32} height={32} />

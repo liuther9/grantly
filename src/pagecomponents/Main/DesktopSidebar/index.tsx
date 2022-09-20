@@ -43,8 +43,8 @@ const StyledCopyright = styled.div`
 	}
 `
 
-const DesktopSidebar:React.FC<Props> = ({ tracker, setTracker, category, setCategory }) => {
-	const user = useAppSelector(state => state.userSlice)
+const DesktopSidebar: React.FC<Props> = ({ tracker, setTracker, category, setCategory }) => {
+	const trackers = useAppSelector(state => state.trackersSlice.trackers)
 
 	return (
 		<Wrapper>
@@ -69,26 +69,26 @@ const DesktopSidebar:React.FC<Props> = ({ tracker, setTracker, category, setCate
 						<RiArrowDownSLine />
 					</summary>
 					<ul>
-						{user.trackers?.map((i) => (
+						{trackers.map((i) => (
 							<StyledLi
-								key={i}
-								chosen={i === tracker}
-								onClick={() => setTracker(i)}
+								key={i.title}
+								chosen={i.title === tracker}
+								onClick={() => setTracker(i.title)}
 							>
-								<Image src={`/flags/${i}.svg`} alt='' width={20} height={14} />
-								{i === 'czech' ? 'Чехия' : i === 'turkey' ? 'Турция' : i === 'germany' ? 'Германия' : i === 'uk' ? 'Великобритания' : i === 'usa' ? 'США' : ''}
+								<Image src={`/flags/${i.title}.svg`} alt='' width={20} height={14} />
+								{i.name}
 							</StyledLi>
 						))}
 					</ul>
 				</StyledDetails>
-				<StyledBtn
+				{/* <StyledBtn
 					id='otherTrackers'
 					onClick={(e) => setCategory(e.currentTarget.id)}
 					selected={category === 'otherTrackers'}
 				>
 					<RiWindowLine />
 					{'Другие трекеры'}
-				</StyledBtn>
+				</StyledBtn> */}
 				<StyledBtn
 					id='announcement'
 					onClick={(e) => setCategory(e.currentTarget.id)}
@@ -103,7 +103,7 @@ const DesktopSidebar:React.FC<Props> = ({ tracker, setTracker, category, setCate
 				<Link href={''}>
 					<StyledLink>По всем вопросам</StyledLink>
 				</Link>
-				<StyledCopyright><MdOutlineCopyright /><span>Grantly Academy</span></StyledCopyright>
+				<StyledCopyright><MdOutlineCopyright /><span>Taply Academy</span></StyledCopyright>
 			</Nav>
 		</Wrapper>
 	)
