@@ -11,7 +11,7 @@ import MoreOptionsModal from './MoreOptionsModal'
 import DesktopSection from './DesktopSection'
 import { useAppSelector } from 'store/hooks'
 import { db } from 'src/utils/firebaseConfig'
-import { _BLACK, _GRAY, _LIGHT_GRAY, _PURPLE, _TABLET } from 'styles/variables'
+import { _BLACK, _PURPLE } from 'styles/variables'
 import {
 	ButtonContainer,
 	Container,
@@ -21,6 +21,7 @@ import {
 	StyledOtherMethods,
 	StyledParagraph,
 } from './style'
+import { mapUserData } from 'src/utils/mapUserData'
 
 const WelcomePage = () => {
 	const [showModal, setModal] = useState(false)
@@ -32,10 +33,10 @@ const WelcomePage = () => {
 		const auth = getAuth()
 		signInWithPopup(auth, provider)
 			.then(async (result) => {
-				const userId = result.user.uid
-				const userRef = doc(db, 'users', userId)
+				const userRef = doc(db, 'users', result.user.uid)
 				const getUser = await getDoc(userRef)
-				!getUser.data() && await setDoc(userRef, { trackers: [], score: 0 })
+				const userData = mapUserData(result.user)
+				!getUser.data() && await setDoc(userRef, { ...userData, trackers: [], score: 0, stage: 'turkey_1' })
 				router.push('/')
 			})
 			.catch((error) => {
@@ -49,14 +50,14 @@ const WelcomePage = () => {
 		<Container>
 			<Section>
 				<IntroCarousel slides={slides} />
-				<StyledHeader>Grantly Academy</StyledHeader>
+				<StyledHeader>Taply Academy</StyledHeader>
 				<StyledHeader>Онлайн академия</StyledHeader>
 				<StyledParagraph>
 					Красавчик! Ты уже сделал свой первый шаг к поступлению в иностранный ВУЗ. Осталось дело за
 					малым
 				</StyledParagraph>
 				<StyledParagraph>
-					Вы можете войти в Grantly Academy любым удобным для вас способом и обучаться
+					Вы можете войти в Taply Academy любым удобным для вас способом и обучаться
 				</StyledParagraph>
 				<ButtonContainer>
 					<Button styles={{ color: _BLACK }} onClick={() => console.log(state)}>

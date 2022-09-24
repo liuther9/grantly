@@ -7,7 +7,9 @@ const initialState:IUser = {
 	token: '',
 	name: '',
 	profilePic: '',
-	trackers: null
+	trackers: null,
+	score: 0,
+	stage: ''
 }
 
 export const userSlice = createSlice({

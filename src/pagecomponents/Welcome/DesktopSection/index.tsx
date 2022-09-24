@@ -10,7 +10,7 @@ type Props = {
 const DesktopSection: React.FC<Props> = () => {
 	return (
 		<Section>
-			<H1>Grantly Academy</H1>
+			<H1>Taply Academy</H1>
 			<InfoItem
 				text={'95% наших выпускникову успешно поступают в иностранные ВУЗ-ы'}
 				icon={<SiGooglecalendar />}
@@ -20,7 +20,7 @@ const DesktopSection: React.FC<Props> = () => {
 				icon={<SiGooglecalendar />}
 			/>
 			<InfoItem
-				text={'В Grantly Academy все учителя,- обладатели нескольких наград и проверенные годами'}
+				text={'В Taply Academy все учителя,- обладатели нескольких наград и проверенные годами'}
 				icon={<SiGooglecalendar />}
 			/>
 		</Section>

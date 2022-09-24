@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { getDoc, doc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
+import { removeUserCookie, setUserCookie, getUserFromCookie } from 'src/utils/userCookie'
 import { db, initFirebase } from 'src/utils/firebaseConfig'
 import { mapUserData } from 'src/utils/mapUserData'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
@@ -18,6 +19,7 @@ const useUser = () => {
 	const logout = async () => {
 		try {
 			await auth.signOut()
+			removeUserCookie()
 			router.push('/welcome')
 		} catch (e: any) {
 			console.log(e.message)
@@ -32,24 +34,27 @@ const useUser = () => {
 				const foundUser = userFromDb.data()
 				const mergedUserData = { ...userData, ...foundUser }
 
+				setUserCookie(mergedUserData)
 				dispatch(setUser(mergedUserData))
 			} else {
+				removeUserCookie()
 				dispatch(setUser(null))
 			}
 		})
 
-		const userR = auth.currentUser && mapUserData(auth.currentUser)
-		if (!userR) router.push('/welcome')
+		const userFromCookie = getUserFromCookie()
+		if (!userFromCookie) router.push('/welcome')
 		else {
 			const func = async () => {
-				const userFromDb = await getDoc(doc(db, 'users', userR.id))
+				const userFromDb = await getDoc(doc(db, 'users', userFromCookie.id))
 				const foundUser = userFromDb.data()
-				dispatch(setUser({ ...userR, ...foundUser }))
+				dispatch(setUser({ ...userFromCookie, ...foundUser }))
 				router.push('/')
 			}
 			func()
 		}
-		
+		const userR = auth.currentUser
+		userR && mapUserData(userR)
 		return () => {
 			cancelAuthListener()
 		}

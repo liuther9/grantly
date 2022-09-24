@@ -14,8 +14,11 @@ interface IUser {
 	email: string
 	token: string
 	name: string
+	phone?: any
 	profilePic: string
 	trackers: any[] | null
+	score: number
+	stage: string
 }
 
 interface ITracker {

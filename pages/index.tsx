@@ -38,7 +38,8 @@ const Main: NextPage = () => {
 	const { show, stage } = trackerState
 	const trackers = useAppSelector((state) => state.trackersSlice.trackers)
 	const user = useAppSelector((state) => state.userSlice)
-	const [tracker, setTracker] = useState('')
+	const userTracker = user.stage.slice(0, -2)
+	const [tracker, setTracker] = useState(userTracker || '')
 	const [desktopCategory, setDesktopCategory] = useState('trackers')
 
 	useEffect(() => {
@@ -51,8 +52,8 @@ const Main: NextPage = () => {
 			)
 		}
 		user.trackers && getAllTrackers()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user.trackers])
+
+	}, [dispatch, user.trackers])
 
 	return (
 		<Wrapper desktop={width > 960}>
