@@ -9,6 +9,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { MdOutlineCopyright } from 'react-icons/md'
 import { useAppSelector } from 'store/hooks'
+import MobileRanking from '../MobileRanking'
 
 type Props = {
 	tracker: string
@@ -97,6 +98,7 @@ const DesktopSidebar: React.FC<Props> = ({ tracker, setTracker, category, setCat
 					<Tag color={category === 'announcement' ? _PURPLE : _BLACK} />
 					{'Анонсы'}
 				</StyledBtn>
+				<MobileRanking />
 				<Link href={''}>
 					<StyledLink>Пол.соглашение</StyledLink>
 				</Link>

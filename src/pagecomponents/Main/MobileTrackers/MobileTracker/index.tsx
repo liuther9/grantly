@@ -3,6 +3,8 @@ import { getDocs, collection, Timestamp } from 'firebase/firestore'
 import TrackerCard from 'src/pagecomponents/Main/TrackerCard'
 import { db } from 'src/utils/firebaseConfig'
 import { Wrapper, Trackers, TrackerName } from './style'
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import { showTracker } from 'store/slices/trackerSlice'
 
 type Props = {
 	title: string
@@ -10,7 +12,11 @@ type Props = {
 }
 
 const MobileTracker: React.FC<Props> = ({ title, country }) => {
+	const dispatch = useAppDispatch()
 	const [stages, setStages] = useState<any[]>([])
+	const user = useAppSelector(state => state.userSlice.stage)
+	const userTracker = user.slice(0, -2)
+	const userStage = parseInt(user.slice(-1) || '0')
 
 	//GET STAGES OF TRACKER
 	useEffect(() => {
@@ -27,6 +33,11 @@ const MobileTracker: React.FC<Props> = ({ title, country }) => {
 		}
 		showData()
 	}, [title])
+
+	// SET STAGE OF USER
+	useEffect(() => {
+		userTracker === title && dispatch(showTracker({ stage: stages.find(i => i.id === userStage)}))
+	}, [dispatch, stages, title, userStage, userTracker])
 
 	return (
 		<Wrapper>

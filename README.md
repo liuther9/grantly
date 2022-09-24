@@ -1,4 +1,4 @@
-This is Frontend app of Grantly Project
+This is Frontend app of Taply Project
 
 Required Node Version is 12.22 or newer
 
