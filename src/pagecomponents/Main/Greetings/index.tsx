@@ -4,6 +4,7 @@ import { _DARK_GRAY, _PURPLE } from 'styles/variables'
 import { Paragraph } from 'pagecomponents/Main/CommonComponents'
 import { useAppSelector } from 'store/hooks'
 import { Fragment } from 'react'
+import { useRouter } from 'next/router'
 
 type Props = {
 	category: string
@@ -32,6 +33,7 @@ const BtnContainer = styled.div`
 
 const Greetings: React.FC<Props> = ({ category }) => {
 	const username = useAppSelector((state) => state.userSlice.name)
+	const router = useRouter()
 	return (
 		<Wrapper>
 			{category === 'trackers' && (
@@ -39,7 +41,8 @@ const Greetings: React.FC<Props> = ({ category }) => {
 					<H1>Привет, {username}</H1>
 					<Paragraph>Скачай разбор про тебя после прохождения анкеты и узнай результаты</Paragraph>
 					<BtnContainer>
-						<Button styles={{ color: _PURPLE }}>Скачать (PDF)</Button>
+						<Button styles={{ color: _PURPLE }} onClick={() => router.push('/questionnaire')}>Заполнить анкету</Button>
+						{/* <Button styles={{ color: _PURPLE }}>Скачать (PDF)</Button> */}
 					</BtnContainer>
 				</Fragment>
 			)}

@@ -70,7 +70,7 @@ const UserComponent:React.FC<Props> = ({ profile, index }) => {
 				'0' + (index + 1)
 			)}
 		</UserRank>
-		<Image src={profile.profilePic} alt='' width={32} height={32} />
+		{profile.profilePic && <Image src={profile.profilePic} alt='' width={32} height={32} />}
 		<UserText>{profile.name}</UserText>
 		<UserText>{profile.score}</UserText>
 	</User>

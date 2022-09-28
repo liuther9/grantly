@@ -1,9 +1,10 @@
+import Image from "next/future/image"
 import styled from "styled-components"
 import { IoLogoReact } from 'react-icons/io5'
 import { FiUser } from 'react-icons/fi'
-import { _LIGHT_PURPLE, _TABLET } from "styles/variables"
-import Image from "next/future/image"
 import { useAppSelector } from "store/hooks"
+import { _DARK_GRAY, _LIGHT_PURPLE, _TABLET } from "styles/variables"
+import LogoComponent from "components/LogoComponent"
 
 type Props = {
 	showHeader: boolean,
@@ -38,12 +39,12 @@ const ImgContainer = styled.div`
 	border-radius: 32px;
 `
 
-const Header: React.FC<Props> = ({ userImg, showHeader }) => {
+const Header: React.FC<Props> = ({ showHeader }) => {
 	const user = useAppSelector(state => state.userSlice)
 
 	return (
 		<StyledHeader showHeader={showHeader}>
-			<IoLogoReact />
+			<LogoComponent />
 			<ImgContainer>
 				{ user.id.length !== 0
 					? <Image src={user.profilePic} alt='' width={32} height={32} />

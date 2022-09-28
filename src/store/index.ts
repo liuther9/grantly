@@ -1,13 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import listenerMiddleware from './listenerMiddleware'
-import { userSlice, questionnaireSlice, trackerSlice, trackersSlice } from './slices'
+import { userSlice, questionnaireSlice, trackerSlice, trackersSlice, rankSlice } from './slices'
 
 export const store = configureStore({
 	reducer: {
 		questionnaireSlice,
 		trackerSlice,
 		trackersSlice,
-		userSlice,
+    userSlice,
+    rankSlice
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware()

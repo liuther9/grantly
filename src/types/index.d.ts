@@ -3,7 +3,7 @@ interface IQuestionnare {
 	name: string
 	city: string
 	birthdate: string
-	careers: string
+	careers: string[]
 	average: string
 	olymps: string
 	sex: string

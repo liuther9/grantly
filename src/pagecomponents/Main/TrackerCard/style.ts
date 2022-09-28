@@ -12,6 +12,7 @@ const Wrapper = styled.div`
 	background-color: ${_PURPLE};
 	margin: 0 0 16px;
 	overflow: hidden;
+	cursor: pointer;
 	@media (max-width: ${_TABLET}) {
 		min-width: 300px;
 		margin: 0 8px 0 0;
@@ -73,7 +74,6 @@ const TimeContainer = styled.div`
 	display: flex;
 	align-items: center;
 	height: 100%;
-	margin-left: 35px;
 	svg {
 		font-size: 14px;
 		color: #fff;
@@ -81,7 +81,6 @@ const TimeContainer = styled.div`
 	}
 	@media (max-width: ${_TABLET}) {
 		justify-content: space-between;
-		margin-left: 0;
 	}
 `
 

@@ -6,7 +6,7 @@ const initialState: IQuestionnare = {
 	name: '',
 	city: '',
 	birthdate: '',
-	careers: '',
+	careers: [],
 	average: '',
 	olymps: '',
 	sex: '',

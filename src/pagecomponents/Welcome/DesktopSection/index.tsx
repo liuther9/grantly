@@ -10,17 +10,17 @@ type Props = {
 const DesktopSection: React.FC<Props> = () => {
 	return (
 		<Section>
-			<H1>Taply Academy</H1>
+			<H1>Steply Academy</H1>
 			<InfoItem
-				text={'95% наших выпускникову успешно поступают в иностранные ВУЗ-ы'}
+				text={'Образовательный стриминг - вещаем в прямом эфире'}
 				icon={<SiGooglecalendar />}
 			/>
 			<InfoItem
-				text={'60% из выпускников выигрывают грант в заграничные Университеты'}
+				text={'Трекеры твоего поступления - подай свою первую заявку на грант вместе с steply'}
 				icon={<SiGooglecalendar />}
 			/>
 			<InfoItem
-				text={'В Taply Academy все учителя,- обладатели нескольких наград и проверенные годами'}
+				text={'Маркетплейс преподавателей, экспертов и сервисов - найди то что нужно именно тебе'}
 				icon={<SiGooglecalendar />}
 			/>
 		</Section>

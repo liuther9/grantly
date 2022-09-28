@@ -18,6 +18,7 @@ const Header = styled.div`
 	height: 64px;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	padding: 0 24px;
 	border-bottom: 1px solid ${_LIGHT_GRAY};
 	margin-bottom: 40px;
@@ -110,8 +111,31 @@ const StyledBtn = styled.button<{ selected: boolean }>`
 	&:active {
 		color: ${_PURPLE};
 	}
+`
+const StyledLink = styled.span`
+	font-size: 14px;
+	line-height: 20px;
+	color: ${_GRAY};
+	margin-bottom: 20px;
 	&:last-of-type {
-		margin-bottom: auto;
+		margin-bottom: 42px;
 	}
 `
-export { StyledBtn, StyledDetails, StyledLi, Wrapper, Nav, Header }
+
+const StyledCopyright = styled.div`
+	color: ${_BLACK};
+	display: flex;
+	align-items: center;
+	height: 40px;
+	margin-bottom: 64px;
+	svg {
+		font-size: 13px;
+		margin-right: 8px;
+	}
+	span {
+		font-size: 14px;
+		line-height: 20px;
+	}
+`
+
+export { StyledBtn, StyledDetails, StyledLi, Wrapper, Nav, Header, StyledCopyright, StyledLink }

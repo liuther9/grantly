@@ -1,7 +1,5 @@
 import { ChangeEvent, Fragment, useState } from 'react'
-import styled from 'styled-components'
 import NumberFormat from 'react-number-format'
-import { _LIGHT_GRAY, _PURPLE, _TABLET } from 'styles/variables'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { setQuestionnaire } from 'store/slices/questionnaireSlice'
 import Button from 'components/Button'
@@ -12,48 +10,8 @@ import ProgressBar from './ProgressBar'
 import Greeting from './Greeting'
 import Radio from 'components/Radio'
 import CheckBox from 'components/CheckBox'
-
-const Wrapper = styled.section`
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 648px;
-	height: 100%;
-	@media (max-width: ${_TABLET}) {
-		width: 100%;
-	}
-`
-
-const ButtonContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	padding: 16px;
-	background: transparent;
-	button {
-		width: 240px;
-	}
-	@media (max-width: ${_TABLET}) {
-		button {
-			width: 100%;
-		}
-	}
-`
-
-const ProfContainer = styled.div`
-	max-height: 92px;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	overflow: scroll;
-	margin-bottom: 16px;
-`
-const BottomBorder = styled.div`
-	width: 100%;
-	height: 2px;
-	background-color: ${_PURPLE};
-`
+import { _PURPLE } from 'styles/variables'
+import { BottomBorder, ButtonContainer, Wrapper, ProfContainer } from './style'
 
 const sex = [
 	{
@@ -76,10 +34,13 @@ const QuestionnairePage = () => {
 	const [showModal, setModal] = useState(false)
 	const [professions, setProfessions] = useState(['ИТ-специалист', 'Бухгалтер', 'Дворник', '3Д-специалист', 'Творчество', 'Художник', 'Сфера обучении', 'Летчик', 'Силовые работы'])
 	const answers = useAppSelector((state) => state.questionnaireSlice)
+	const user = useAppSelector((state) => state.userSlice)
 	const chosenSex = answers.sex
+	const careers = answers.careers
 	const dispatch = useAppDispatch()
 
 	const nextBtn = () => {
+		console.log(answers)
 		if (percent < 100) {
 			setPercent(percent + 100)
 			setPage(2)
@@ -91,11 +52,16 @@ const QuestionnairePage = () => {
 		setPage(1)
 	}
 
+	const setProf = (prof: string) => {
+		careers.includes(prof) ? dispatch(setQuestionnaire({ careers: careers.filter(i => i !== prof) })) :
+		dispatch(setQuestionnaire({ careers: [...careers, prof] }))
+	}
+
 	return (
 		<Wrapper>
 			{page === 1 && (
 				<Greeting
-					title={'Хэй, Асанали!'}
+					title={`Хэй, ${user.name}!`}
 					text={'Мы зададим тебе несколько вопросов. Постарайся ответить честно'}
 				/>
 			)}
@@ -135,7 +101,7 @@ const QuestionnairePage = () => {
 							title={i.title}
 							value={i.value}
 							onChange={() => dispatch(setQuestionnaire({ sex: i.title }))}
-							checked={i.value === chosenSex}
+							checked={i.title === chosenSex}
 						/>)}
 					</CardComponent>
 				</Fragment>
@@ -144,11 +110,21 @@ const QuestionnairePage = () => {
 			{page === 2 && (
 				<Fragment>
 					<CardComponent question={'В каких олимпиадах участвовали?'} cardName={'olymps'} customInput>
-						<ProfContainer>{professions.map(prof => <CheckBox value={prof} key={prof} />)}</ProfContainer>
+						<ProfContainer>
+							{professions.map(prof =>
+								<CheckBox
+									value={prof}
+									key={prof}
+									onChange={() => setProf(prof)}
+									// onClick={() => setProf(prof)}
+									checked={careers.includes(prof) || false}
+								/>)
+							}
+						</ProfContainer>
 						<input placeholder='Свои варианты'/>
 						<BottomBorder />
 					</CardComponent>
-					<CardComponent question={'В каких олимпиадах участвовали?'} cardName={'olymps'} />
+					<CardComponent question={'Ваш средний балл (в уч. заведении)'} cardName={'average'} />
 					<CardComponent question={'В каких олимпиадах участвовали?'} cardName={'olymps'} />
 				</Fragment>
 			)}

@@ -9,7 +9,7 @@ import IntroCarousel from './IntroCarousel'
 import Button from 'components/Button'
 import MoreOptionsModal from './MoreOptionsModal'
 import DesktopSection from './DesktopSection'
-import { useAppSelector } from 'store/hooks'
+import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { db } from 'src/utils/firebaseConfig'
 import { _BLACK, _PURPLE } from 'styles/variables'
 import {
@@ -22,11 +22,13 @@ import {
 	StyledParagraph,
 } from './style'
 import { mapUserData } from 'src/utils/mapUserData'
+import { setUser } from 'store/slices/userSlice'
 
 const WelcomePage = () => {
 	const [showModal, setModal] = useState(false)
 	const router = useRouter()
 	const state = useAppSelector(state => state.userSlice)
+	const dispatch = useAppDispatch()
 
 	const login = () => {
 		const provider = new GoogleAuthProvider()
@@ -36,7 +38,11 @@ const WelcomePage = () => {
 				const userRef = doc(db, 'users', result.user.uid)
 				const getUser = await getDoc(userRef)
 				const userData = mapUserData(result.user)
-				!getUser.data() && await setDoc(userRef, { ...userData, trackers: [], score: 0, stage: 'turkey_1' })
+				if (!getUser.data()) {
+					const newUserData = { ...userData, trackers: [], score: 0, stage: 'turkey_1' }
+					await setDoc(userRef, newUserData)
+					dispatch(setUser(newUserData))
+				}
 				router.push('/')
 			})
 			.catch((error) => {
@@ -50,14 +56,14 @@ const WelcomePage = () => {
 		<Container>
 			<Section>
 				<IntroCarousel slides={slides} />
-				<StyledHeader>Taply Academy</StyledHeader>
+				<StyledHeader>Steply Academy</StyledHeader>
 				<StyledHeader>Онлайн академия</StyledHeader>
 				<StyledParagraph>
 					Красавчик! Ты уже сделал свой первый шаг к поступлению в иностранный ВУЗ. Осталось дело за
 					малым
 				</StyledParagraph>
 				<StyledParagraph>
-					Вы можете войти в Taply Academy любым удобным для вас способом и обучаться
+					Steply - онлайн помощник в подготовке и подаче документов на стипендии,гранты и программы по всему миру, а также в  выборе специальности и трудоустройстве
 				</StyledParagraph>
 				<ButtonContainer>
 					<Button styles={{ color: _BLACK }} onClick={() => console.log(state)}>

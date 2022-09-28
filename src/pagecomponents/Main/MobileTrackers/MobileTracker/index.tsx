@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getDocs, collection, Timestamp } from 'firebase/firestore'
+import { getDocs, collection, Timestamp, query, limit, orderBy, startAfter } from 'firebase/firestore'
 import TrackerCard from 'src/pagecomponents/Main/TrackerCard'
 import { db } from 'src/utils/firebaseConfig'
 import { Wrapper, Trackers, TrackerName } from './style'
@@ -22,7 +22,8 @@ const MobileTracker: React.FC<Props> = ({ title, country }) => {
 	useEffect(() => {
 		const showData = async () => {
 			let d: any = []
-			const trackerStages = await getDocs(collection(db, `trackers/${title}/stages`))
+			const col = collection(db, `trackers/${title}/stages`)
+			const trackerStages = await getDocs(query(col, orderBy('id')))
 			trackerStages.forEach((stage) => {
 				if (!d.find((i: any) => i.id === stage.data()['id'])) {
 					const date = new Timestamp(stage.data()['date']['seconds'], stage.data()['date']['nanoseconds']).toDate().toLocaleString('ru-RU')
@@ -35,9 +36,9 @@ const MobileTracker: React.FC<Props> = ({ title, country }) => {
 	}, [title])
 
 	// SET STAGE OF USER
-	useEffect(() => {
-		userTracker === title && dispatch(showTracker({ stage: stages.find(i => i.id === userStage)}))
-	}, [dispatch, stages, title, userStage, userTracker])
+	// useEffect(() => {
+	// 	userTracker === title && dispatch(showTracker({ stage: stages.find(i => i.id === userStage)}))
+	// }, [dispatch, stages, title, userStage, userTracker])
 
 	return (
 		<Wrapper>

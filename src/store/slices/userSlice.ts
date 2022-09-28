@@ -1,28 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IUser } from 'types/index'
 
-const initialState:IUser = {
-	id: '',
-	email: '',
-	token: '',
-	name: '',
-	profilePic: '',
-	trackers: null,
-	score: 0,
-	stage: ''
-}
+const initialState: IUser = {
+		id: '',
+		email: '',
+		token: '',
+		name: '',
+		profilePic: '',
+		trackers: null,
+		score: 0,
+		stage: '',
+	}
 
 export const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    setUser: (
-      state,
-      { payload }
-		) => {
+	name: 'user',
+	initialState,
+	reducers: {
+		setUser: (state, { payload }) => {
 			return {
 				...state,
-				...payload
+				...payload,
 			}
 		},
 	},

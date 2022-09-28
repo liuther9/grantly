@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect } from 'react'
 import { FiCalendar, FiChevronLeft } from 'react-icons/fi'
 import styled from 'styled-components'
 import Button from 'components/Button'

@@ -1,6 +1,5 @@
 import Image from 'next/future/image'
 import { BsClock } from 'react-icons/bs'
-import { Btn } from 'pagecomponents/Main/CommonComponents'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { showTracker } from 'store/slices/trackerSlice'
 import { StyledTime, TimeContainer, Wrapper, BottomContainer, Paragraph, H1 } from './style'
@@ -25,19 +24,18 @@ const TrackerCard: React.FC<Props> = ({ imgUrl, country, stage }) => {
 		return [hours, remainingMinutes]
 	}
 
-	const goToStage = async () =>
-		await updateDoc(doc(db, 'users', user.id), { stage: `${imgUrl}_${stage.id}` }).then((res) =>
-			dispatch(showTracker({ show: true, stage }))
-		)
+	const goToStage = async () => {
+		dispatch(showTracker({ show: true, stage }))
+		await updateDoc(doc(db, 'users', user.id), { stage: `${imgUrl}_${stage.id}` })
+	}
 
 	return (
-		<Wrapper>
+		<Wrapper onClick={goToStage}>
 			<H1>
 				{name} <Image src={`/flags/${imgUrl}.svg`} alt='turkey' width={24} height={18} />
 			</H1>
 			<Paragraph>Онлайн-вебинар о {country?.replace(/.$/, 'и')}</Paragraph>
 			<BottomContainer>
-				<Btn onClick={goToStage}>Перейти</Btn>
 				<TimeContainer>
 					<BsClock />
 					<StyledTime>

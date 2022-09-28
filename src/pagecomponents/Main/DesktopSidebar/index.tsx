@@ -1,15 +1,13 @@
-import { useState } from 'react'
 import Image from 'next/future/image'
-import { IoLogoReact } from 'react-icons/io5'
-import { RiUser3Line, RiArrowDownSLine, RiWindowLine } from 'react-icons/ri'
-import { _LIGHT_GRAY, _GRAY, _PURPLE, _BLACK } from 'styles/variables'
-import Tag from 'src/svg/Tag'
-import { Header, Nav, StyledBtn, StyledDetails, StyledLi, Wrapper } from './style'
 import Link from 'next/link'
-import styled from 'styled-components'
+import { RiUser3Line, RiArrowDownSLine } from 'react-icons/ri'
 import { MdOutlineCopyright } from 'react-icons/md'
+import Tag from 'src/svg/Tag'
 import { useAppSelector } from 'store/hooks'
-import MobileRanking from '../MobileRanking'
+import LogoComponent from 'components/LogoComponent'
+import { Header, Nav, StyledBtn, StyledDetails, StyledLi, Wrapper, StyledCopyright, StyledLink } from './style'
+import { _PURPLE, _BLACK } from 'styles/variables'
+import RankCard from './RankCard'
 
 type Props = {
 	tracker: string
@@ -18,39 +16,13 @@ type Props = {
 	setCategory: React.Dispatch<React.SetStateAction<string>>
 }
 
-const StyledLink = styled.span`
-	font-size: 14px;
-	line-height: 20px;
-	color: ${_GRAY};
-	margin-bottom: 20px;
-	&:last-of-type {
-		margin-bottom: 42px;
-	}
-`
-
-const StyledCopyright = styled.div`
-	color: ${_BLACK};
-	display: flex;
-	align-items: center;
-	height: 40px;
-	margin-bottom: 64px;
-	svg {
-		font-size: 13px;
-		margin-right: 8px;
-	}
-	span {
-		font-size: 14px;
-		line-height: 20px;
-	}
-`
-
 const DesktopSidebar: React.FC<Props> = ({ tracker, setTracker, category, setCategory }) => {
 	const trackers = useAppSelector(state => state.trackersSlice.trackers)
 
 	return (
 		<Wrapper>
 			<Header>
-				<IoLogoReact />
+				<LogoComponent />
 				<span>Онлайн академия</span>
 			</Header>
 			<Nav>
@@ -98,14 +70,14 @@ const DesktopSidebar: React.FC<Props> = ({ tracker, setTracker, category, setCat
 					<Tag color={category === 'announcement' ? _PURPLE : _BLACK} />
 					{'Анонсы'}
 				</StyledBtn>
-				<MobileRanking />
+				<RankCard />
 				<Link href={''}>
 					<StyledLink>Пол.соглашение</StyledLink>
 				</Link>
 				<Link href={''}>
 					<StyledLink>По всем вопросам</StyledLink>
 				</Link>
-				<StyledCopyright><MdOutlineCopyright /><span>Taply Academy</span></StyledCopyright>
+				<StyledCopyright><MdOutlineCopyright /><span>Steply Academy</span></StyledCopyright>
 			</Nav>
 		</Wrapper>
 	)
