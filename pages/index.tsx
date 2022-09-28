@@ -22,7 +22,6 @@ import { setOtherTrackers, setTrackers } from 'store/slices/trackersSlice'
 // Style
 import { _TABLET } from 'styles/variables'
 import Cookies from 'js-cookie'
-import { firebaseAdmin } from 'src/utils/firebaseAdmin'
 import { showTracker } from 'store/slices/trackerSlice'
 
 const Wrapper = styled.section<{ desktop: boolean }>`
