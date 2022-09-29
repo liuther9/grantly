@@ -14,13 +14,10 @@ const MobileRanking = () => {
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		user.id.length !== 0 && dispatch(setRanking(user))
 		const doit = async () => {
 			const userRef = collection(db, 'users')
-			const firstUsers = await getDocs(query(userRef, orderBy('score', 'desc'), limit(3)))
-			const lastUser = await getDocs(query(userRef, orderBy('score', 'asc'), limit(1)))
+			const firstUsers = await getDocs(query(userRef, orderBy('score', 'desc'), limit(5)))
 			firstUsers.forEach((i) => dispatch(setRanking(i.data())))
-			lastUser.forEach((i) => dispatch(setRanking(i.data())))
 		}
 		doit()
 	}, [dispatch, user])

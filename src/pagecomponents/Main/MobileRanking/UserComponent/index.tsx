@@ -52,7 +52,7 @@ const UserText = styled.span`
 	font-weight: 700;
 	font-size: 16px;
 	line-height: 24px;
-	max-width: 200px;
+	max-width: 170px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;

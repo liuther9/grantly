@@ -18,6 +18,7 @@ const Container = styled.div`
 	border-radius: 20px;
 	padding: 20px;
 	background-color: #fff;
+	width: 380px;
 `
 
 const RankModal: React.FC<any> = ({ setModal }) => {
