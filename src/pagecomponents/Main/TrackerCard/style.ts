@@ -6,6 +6,7 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	min-width: 421px;
+	max-width: 421px;
 	height: 160px;
 	padding: 32px 24px;
 	border-radius: 24px;
@@ -59,6 +60,7 @@ const Paragraph = styled.p`
 	line-height: 16px;
 	margin-bottom: 16px;
 	color: ${_LIGHT_GRAY};
+	margin-bottom: auto;
 `
 const BottomContainer = styled.div`
 	z-index: 1;

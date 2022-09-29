@@ -141,7 +141,7 @@ const Tracker = () => {
 				<Step>{name}</Step>
 			</TopContainer>
 			<Player url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
-			<H1>{title}</H1>
+			<H1>{description}</H1>
 			<WebinarTime>
 				{!live && (
 					<Fragment>

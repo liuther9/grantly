@@ -16,7 +16,7 @@ type Props = {
 const TrackerCard: React.FC<Props> = ({ imgUrl, country, stage }) => {
 	const dispatch = useAppDispatch()
 	const user = useAppSelector((store) => store.userSlice)
-	const { duration, name } = stage
+	const { duration, name, description } = stage
 
 	const convertTime = (minutes: number) => {
 		const hours = Math.floor(minutes / 60)
@@ -34,7 +34,7 @@ const TrackerCard: React.FC<Props> = ({ imgUrl, country, stage }) => {
 			<H1>
 				{name} <Image src={`/flags/${imgUrl}.svg`} alt='turkey' width={24} height={18} />
 			</H1>
-			<Paragraph>Онлайн-вебинар о {country?.replace(/.$/, 'и')}</Paragraph>
+			<Paragraph>{description}</Paragraph>
 			<BottomContainer>
 				<TimeContainer>
 					<BsClock />

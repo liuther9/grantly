@@ -39,7 +39,7 @@ const Greetings: React.FC<Props> = ({ category }) => {
 			{category === 'trackers' && (
 				<Fragment>
 					<H1>Привет, {username}</H1>
-					<Paragraph>Скачай разбор про тебя после прохождения анкеты и узнай результаты</Paragraph>
+					<Paragraph>Ты можешь запросить разбор своего study case и получить персональные рекомендации по поступлению и выборе профессии от наших координаторов</Paragraph>
 					<BtnContainer>
 						<Button styles={{ color: _PURPLE }} onClick={() => router.push('/questionnaire')}>Заполнить анкету</Button>
 						{/* <Button styles={{ color: _PURPLE }}>Скачать (PDF)</Button> */}

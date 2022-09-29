@@ -78,7 +78,7 @@ const AnnouncementCard: React.FC<Props> = ({ i }) => {
 					{i.date}
 				</CardDate>
 				<CardDesc>{i.desc}</CardDesc>
-				<Btn>Запланировать</Btn>
+				<Btn>Проголосовать</Btn>
 			</CardBotContainer>
 		</Card>
 	)

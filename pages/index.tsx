@@ -2,6 +2,8 @@ import type { GetServerSidePropsContext, NextPage } from 'next'
 import { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
 // import firebase
+import { db } from 'src/utils/firebaseConfig'
+import { collection, doc, getDoc, getDocs, Timestamp } from 'firebase/firestore'
 // Components
 import MobileAnnouncement from 'pagecomponents/Main/MobileAnnouncement'
 import MobileRanking from 'pagecomponents/Main/MobileRanking'
@@ -16,13 +18,11 @@ import Greetings from 'pagecomponents/Main/Greetings'
 // Functions and utils
 import useWindowSize from 'src/helpers/useWindowSize'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
-import { collection, doc, getDoc, getDocs, Timestamp } from 'firebase/firestore'
-import { db } from 'src/utils/firebaseConfig'
 import { setOtherTrackers, setTrackers } from 'store/slices/trackersSlice'
+import { showTracker } from 'store/slices/trackerSlice'
 // Style
 import { _TABLET } from 'styles/variables'
-import Cookies from 'js-cookie'
-import { showTracker } from 'store/slices/trackerSlice'
+import Spinner from 'components/Spinner'
 
 const Wrapper = styled.section<{ desktop: boolean }>`
 	display: flex;
@@ -44,36 +44,44 @@ const Main: NextPage = () => {
 	const userTracker = user.stage.slice(0, -2)
 	const [tracker, setTracker] = useState(userTracker || '')
 	const [desktopCategory, setDesktopCategory] = useState('trackers')
+	const [loading, setLoading] = useState(false)
 
+	// GET TRACKERS
 	useEffect(() => {
 		const getAllTrackers = async () => {
 			const fetchedTrackers = await getDocs(collection(db, 'trackers'))
-			fetchedTrackers.forEach((item) => dispatch(setTrackers(item.data()))
+			fetchedTrackers.forEach(
+				(item) => dispatch(setTrackers(item.data()))
 				// user.trackers?.includes(item.id)
 				// 	? dispatch(setTrackers(item.data()))
 				// 	: dispatch(setOtherTrackers(item.data()))
 			)
 		}
 		getAllTrackers()
-
 	}, [dispatch, user.trackers])
 
+	//GET LAST VISITED STAGE AND TRACKER
 	useEffect(() => {
-		console.log(1)
 		if (user.stage.length !== 0) {
-			console.log(2)
 			const userTracker = user.stage.slice(0, -2)
 			const userStage = user.stage.slice(-1)
 			const getStage = async () => {
-				const theDoc = await getDoc(doc(db, `trackers/${userTracker}/stages/${userStage}`))
+				setLoading(true)
+				const theDoc = await getDoc(doc(db, `trackers/${userTracker}/stages/${userStage}`)).finally(
+					() => setLoading(false)
+				)
 				const stageRef = theDoc.data()
-				console.log(stageRef)
-				const date = stageRef && new Timestamp(stageRef['date']['seconds'], stageRef['date']['nanoseconds']).toDate().toLocaleString('ru-RU')
-				const stage = {...stageRef, date}
+				const date =
+					stageRef &&
+					new Timestamp(stageRef['date']['seconds'], stageRef['date']['nanoseconds'])
+						.toDate()
+						.toLocaleString('ru-RU')
+				const stage = { ...stageRef, date }
 
 				dispatch(showTracker({ stage }))
 			}
 			getStage()
+			setTracker(userTracker)
 		}
 	}, [dispatch, user.stage])
 
@@ -90,11 +98,15 @@ const Main: NextPage = () => {
 			<Greetings category={desktopCategory} />
 			{width > 960 && (
 				<Fragment>
-					{desktopCategory === 'trackers' && tracker.length > 0 &&
+					{desktopCategory === 'trackers' &&
+						tracker.length > 0 &&
 						trackers.map(
 							(item) =>
-								item.title === tracker && <MobileTracker key={item.title} title={item.title} country={item.name} />
+								item.title === tracker && (
+									<MobileTracker key={item.title} title={item.title} country={item.name} />
+								)
 						)}
+					{loading && <Spinner />}
 					{desktopCategory === 'trackers' && <Tracker />}
 					{desktopCategory === 'otherTrackers' && <DesktopOtherTrackers />}
 					{desktopCategory === 'announcement' && <DesktopAnnouncements />}
@@ -103,6 +115,7 @@ const Main: NextPage = () => {
 			{width < 960 && (
 				<Fragment>
 					<MobileTrackers trackers={trackers} />
+					{loading && <Spinner />}
 					{/* <MobileOtherTrackers /> */}
 					<MobileAnnouncement />
 					<MobileRanking />
@@ -116,30 +129,30 @@ const Main: NextPage = () => {
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 	try {
 		console.log(ctx.req.cookies['auth'])
-    // const cookies = Cookies.get(ctx);
-    // const token = await firebaseAdmin.auth().verifyIdToken(cookies.token);
+		// const cookies = Cookies.get(ctx);
+		// const token = await firebaseAdmin.auth().verifyIdToken(cookies.token);
 
-    // // the user is authenticated!
-    // const { uid, email } = token;
+		// // the user is authenticated!
+		// const { uid, email } = token;
 
-    // FETCH STUFF HERE!! 🚀
+		// FETCH STUFF HERE!! 🚀
 
-    return {
-      props: { message: `Your email is ${'email'} and your UID is ${'uid'}.` },
-    };
-  } catch (err) {
-    // either the `token` cookie didn't exist
-    // or token verification failed
-    // either way: redirect to the login page
-    ctx.res.writeHead(302, { Location: '/login' });
-    ctx.res.end();
+		return {
+			props: { message: `Your email is ${'email'} and your UID is ${'uid'}.` },
+		}
+	} catch (err) {
+		// either the `token` cookie didn't exist
+		// or token verification failed
+		// either way: redirect to the login page
+		ctx.res.writeHead(302, { Location: '/login' })
+		ctx.res.end()
 
-    // `as never` prevents inference issues
-    // with InferGetServerSidePropsType.
-    // The props returned here don't matter because we've
-    // already redirected the user.
-    return { props: {} as never };
-  }
-};
+		// `as never` prevents inference issues
+		// with InferGetServerSidePropsType.
+		// The props returned here don't matter because we've
+		// already redirected the user.
+		return { props: {} as never }
+	}
+}
 
 export default Main
