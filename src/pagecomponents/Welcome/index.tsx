@@ -65,27 +65,28 @@ const WelcomePage = () => {
 				<StyledParagraph>
 					Steply - онлайн помощник в подготовке и подаче документов на стипендии,гранты и программы по всему миру, а также в  выборе специальности и трудоустройстве
 				</StyledParagraph>
+				{/* ЗДЕСЬ БУДУТ НОВЫЕ МЕТОДЫ ЛОГИНА */}
 				<ButtonContainer>
-					<Button disabled styles={{ color: _BLACK }} onClick={() => console.log(state)}>
+					{/* <Button disabled styles={{ color: _BLACK }} onClick={() => console.log(state)}>
 						<SiApple />
 						Войти через Apple
-					</Button>
+					</Button> */}
 					<Button styles={{ color: _PURPLE }} onClick={login}>
 						<GrGoogle />
 						Войти через Google
 					</Button>
 				</ButtonContainer>
-				<StyledOtherMethods onClick={() => setModal(true)}>Другие способы</StyledOtherMethods>
-				{showModal && <MoreOptionsModal close={() => setModal(false)} />}
-				<DesktopDivider>или</DesktopDivider>
+				{/* <StyledOtherMethods onClick={() => setModal(true)}>Другие способы</StyledOtherMethods>
+				{showModal && <MoreOptionsModal close={() => setModal(false)} />} 
+				<DesktopDivider>или</DesktopDivider>*/}
 
 				<ButtonContainer>
-					<Button disabled styles={{ color: 'transparent', border: _PURPLE }}>
+					{/* <Button disabled styles={{ color: 'transparent', border: _PURPLE }}>
 						<TbBrandMeta /> Войти через Facebook
 					</Button>
 					<Button disabled styles={{ color: 'transparent', border: _PURPLE }}>
 						<SiTwitter /> Войти через Twitter
-					</Button>
+					</Button> */}
 				</ButtonContainer>
 			</Section>
 

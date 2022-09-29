@@ -62,16 +62,18 @@ const Header: React.FC<Props> = ({ showHeader, logout }) => {
 		<StyledHeader showHeader={showHeader}>
 			<LogoComponent />
 			<RightContainer>
-				<Button
-					styles={{
-						color: 'transparent',
-						textColor: _BLACK,
-					}}
-					onClick={logout}
-				>
-					Выйти
-					<MdOutlineLogout onClick={logout} />
-				</Button>
+				{user.id.length !== 0 && (
+					<Button
+						styles={{
+							color: 'transparent',
+							textColor: _BLACK,
+						}}
+						onClick={logout}
+					>
+						Выйти
+						<MdOutlineLogout onClick={logout} />
+					</Button>
+				)}
 				<ImgContainer>
 					{user.id.length !== 0 ? (
 						<Image src={user.profilePic} alt='' width={32} height={32} />
