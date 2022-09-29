@@ -76,7 +76,7 @@ const RankCard = () => {
 		<H1>Пользователь {firstRank?.name} занял 1-е место!</H1>
 		<Btn onClick={() => setModal(true)}>Посмотреть <HiOutlineArrowSmRight /></Btn>
 		<ImageWrapper>
-			{firstRank?.id.length !== 0 && <Image src={firstRank?.profilePic} alt={''} fill />}
+			{firstRank?.profilePic && <Image src={firstRank?.profilePic} alt={''} fill sizes="100vw" />}
 		</ImageWrapper>
 		{modal && <RankModal setModal={setModal} />}
 	</Wrapper>

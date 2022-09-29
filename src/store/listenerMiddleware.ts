@@ -16,7 +16,7 @@ listenerMiddleware.startListening({
   actionCreator: setUser,
   effect: async (action, listenerApi) => {
     listenerApi.cancelActiveListeners()
-    action.payload ? localStorage.setItem('user', JSON.stringify(action.payload)) : localStorage.removeItem('user')
+    action.payload !== null ? localStorage.setItem('user', JSON.stringify(action.payload)) : localStorage.removeItem('user')
   }
 })
 

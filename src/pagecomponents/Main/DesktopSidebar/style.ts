@@ -112,11 +112,12 @@ const StyledBtn = styled.button<{ selected: boolean }>`
 		color: ${_PURPLE};
 	}
 `
-const StyledLink = styled.span`
+const StyledLink = styled.a`
 	font-size: 14px;
 	line-height: 20px;
 	color: ${_GRAY};
 	margin-bottom: 20px;
+	cursor: pointer;
 	&:last-of-type {
 		margin-bottom: 42px;
 	}

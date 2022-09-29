@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
-import { SiGooglecalendar } from 'react-icons/si'
+import { RiMailSendLine, RiUserStarLine } from 'react-icons/ri'
+import { TbLivePhoto } from 'react-icons/tb'
 import InfoItem from './InfoItem'
 import { H1, Section } from './style'
 
@@ -10,18 +11,18 @@ type Props = {
 const DesktopSection: React.FC<Props> = () => {
 	return (
 		<Section>
-			<H1>Steply Academy</H1>
+			<H1>Steply.me</H1>
 			<InfoItem
 				text={'Образовательный стриминг - вещаем в прямом эфире'}
-				icon={<SiGooglecalendar />}
+				icon={<TbLivePhoto />}
 			/>
 			<InfoItem
 				text={'Трекеры твоего поступления - подай свою первую заявку на грант вместе с steply'}
-				icon={<SiGooglecalendar />}
+				icon={<RiMailSendLine />}
 			/>
 			<InfoItem
 				text={'Маркетплейс преподавателей, экспертов и сервисов - найди то что нужно именно тебе'}
-				icon={<SiGooglecalendar />}
+				icon={<RiUserStarLine />}
 			/>
 		</Section>
 	)

@@ -74,10 +74,8 @@ const DesktopSidebar: React.FC<Props> = ({ tracker, setTracker, category, setCat
 				<Link href={''}>
 					<StyledLink>Пол.соглашение</StyledLink>
 				</Link>
-				<Link href={''}>
-					<StyledLink>По всем вопросам</StyledLink>
-				</Link>
-				<StyledCopyright><MdOutlineCopyright /><span>Steply Academy</span></StyledCopyright>
+				<StyledLink href={'https://t.me/mubbbarek'} target="_blank">По всем вопросам</StyledLink>
+				<StyledCopyright><MdOutlineCopyright /><span>Steply.me</span></StyledCopyright>
 			</Nav>
 		</Wrapper>
 	)

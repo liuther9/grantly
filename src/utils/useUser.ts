@@ -18,8 +18,10 @@ const useUser = () => {
 
 	const logout = async () => {
 		try {
-			await auth.signOut()
+			typeof window !== 'undefined' && localStorage.removeItem('user')
 			removeUserCookie()
+			dispatch(setUser(null))
+			await auth.signOut()
 			router.push('/welcome')
 		} catch (e: any) {
 			console.log(e.message)

@@ -23,7 +23,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 	const [user, logout] = useUser()
 	return (
 		<Fragment>
-			<Header showHeader={showHeader}></Header>
+			<Header showHeader={showHeader} logout={logout} />
 			<Main showHeader={showHeader}>{children}</Main>
 		</Fragment>
 	)

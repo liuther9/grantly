@@ -56,8 +56,8 @@ const WelcomePage = () => {
 		<Container>
 			<Section>
 				<IntroCarousel slides={slides} />
-				<StyledHeader>Steply Academy</StyledHeader>
-				<StyledHeader>Онлайн академия</StyledHeader>
+				<StyledHeader>Steply.me</StyledHeader>
+				<StyledHeader>Steply.me</StyledHeader>
 				<StyledParagraph>
 					Красавчик! Ты уже сделал свой первый шаг к поступлению в иностранный ВУЗ. Осталось дело за
 					малым
@@ -66,7 +66,7 @@ const WelcomePage = () => {
 					Steply - онлайн помощник в подготовке и подаче документов на стипендии,гранты и программы по всему миру, а также в  выборе специальности и трудоустройстве
 				</StyledParagraph>
 				<ButtonContainer>
-					<Button styles={{ color: _BLACK }} onClick={() => console.log(state)}>
+					<Button disabled styles={{ color: _BLACK }} onClick={() => console.log(state)}>
 						<SiApple />
 						Войти через Apple
 					</Button>
@@ -80,10 +80,10 @@ const WelcomePage = () => {
 				<DesktopDivider>или</DesktopDivider>
 
 				<ButtonContainer>
-					<Button styles={{ color: 'transparent', border: _PURPLE }}>
+					<Button disabled styles={{ color: 'transparent', border: _PURPLE }}>
 						<TbBrandMeta /> Войти через Facebook
 					</Button>
-					<Button styles={{ color: 'transparent', border: _PURPLE }}>
+					<Button disabled styles={{ color: 'transparent', border: _PURPLE }}>
 						<SiTwitter /> Войти через Twitter
 					</Button>
 				</ButtonContainer>

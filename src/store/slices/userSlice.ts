@@ -17,7 +17,8 @@ export const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser: (state, { payload }) => {
-			return {
+			if(payload === null) return initialState
+			else return {
 				...state,
 				...payload,
 			}

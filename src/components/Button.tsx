@@ -32,6 +32,7 @@ const StyledButton = styled.button<BtnProps>`
 	&:disabled {
 		background-color: ${_LIGHT_GRAY};
 		border: 2px solid ${_LIGHT_GRAY};
+		cursor: not-allowed;
 	}
 
 	font-size: 14px;

@@ -84,7 +84,7 @@ const MoreOptionsModal:React.FC<Props> = ({ close }) => {
 			<Container onClick={preventClick}>
 				<Slide />
 				<H1>ВСЕ СПОСОБЫ</H1>
-					<Button styles={{ color: _BLACK }}>
+					<Button disabled styles={{ color: _BLACK }}>
 						<SiApple />
 						Войти через Apple
 					</Button>
@@ -92,10 +92,10 @@ const MoreOptionsModal:React.FC<Props> = ({ close }) => {
 						<GrGoogle />
 						Войти через Google
 					</Button>
-					<Button styles={{ color: 'transparent', border: _PURPLE }}>
+					<Button disabled styles={{ color: 'transparent', border: _PURPLE }}>
 						<TbBrandMeta /> Войти через Facebook
 					</Button>
-					<Button styles={{ color: 'transparent', border: _PURPLE }}>
+					<Button disabled styles={{ color: 'transparent', border: _PURPLE }}>
 						<SiTwitter /> Войти через Twitter
 					</Button>
 			</Container>
