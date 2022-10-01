@@ -1,6 +1,6 @@
 import Image from 'next/future/image'
 import styled from 'styled-components'
-import { _LIGHT_GRAY, _TABLET } from 'styles/variables'
+import { _LIGHT_GRAY, _MOBILE } from 'styles/variables'
 import { Btn } from 'pagecomponents/Main/CommonComponents'
 import { ITracker } from 'types/index'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
@@ -27,7 +27,7 @@ const TrackerContainer = styled.div`
 	background: linear-gradient(89.73deg, #4b4b4b 0.31%, #212121 99.84%);
 	box-shadow: 0px 12.3603px 24.1177px rgba(0, 0, 0, 0.123802),
 		0px 5.13384px 10.0172px rgba(0, 0, 0, 0.095), 0px 1.85681px 3.62304px rgba(0, 0, 0, 0.0661981);
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		margin-right: 0;
 	}
 `

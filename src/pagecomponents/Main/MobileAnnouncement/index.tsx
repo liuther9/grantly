@@ -1,13 +1,13 @@
 import Carousel from 'nuka-carousel/lib/carousel'
-import { H1 } from 'pagecomponents/Main/CommonComponents'
 import styled from 'styled-components'
+import { H1, Paragraph } from 'pagecomponents/Main/CommonComponents'
+import AnnouncementCard from 'pagecomponents/Main/AnnouncementCard'
 import { _LIGHT_GRAY } from 'styles/variables'
-import AnnouncementCard from '../AnnouncementCard'
-import { Paragraph } from '../CommonComponents'
+import useWindowSize from 'src/helpers/useWindowSize'
 
 type Props = {}
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ wide: boolean }>`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 		transition: all 0.15s linear;
 		& + .slide {
 			transition: all 0.15s linear;
-			transform: translateX(-90px);
+			transform: ${props => props.wide ? '' : 'translateX(-90px)'};
 			opacity: 0.95;
 		}
 	}
@@ -31,11 +31,12 @@ const Wrapper = styled.div`
 `
 
 const MobileAnnouncement = (props: Props) => {
+	const { width } = useWindowSize()
 	return (
-		<Wrapper>
+		<Wrapper wide={width > 768}>
 			<H1>Анонс</H1>
 			<Paragraph>Будьте одним из первых, кто добавит этот трекер</Paragraph>
-			<Carousel slidesToShow={1} withoutControls zoomScale={0.95} dragThreshold={0.2}>
+			<Carousel slidesToShow={width > 768 ? 2.5 : 1} withoutControls zoomScale={0.95} dragThreshold={0.2}>
 				{arr.map((i) => <AnnouncementCard i={i} key={i.title} />)}
 			</Carousel>
 		</Wrapper>

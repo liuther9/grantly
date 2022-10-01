@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { _PURPLE, _TABLET, _DARK_PURPLE, _LIGHT_GRAY } from 'styles/variables'
+import { _PURPLE, _MOBILE, _DARK_PURPLE, _LIGHT_GRAY } from 'styles/variables'
 
 const Wrapper = styled.div`
 	position: relative;
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 	margin: 0 0 16px;
 	overflow: hidden;
 	cursor: pointer;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		min-width: 300px;
 		margin: 0 8px 0 0;
 		&:first-of-type {
@@ -67,7 +67,7 @@ const BottomContainer = styled.div`
 	display: flex;
 	align-items: center;
 	width: 100%;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		justify-content: space-between;
 	}
 `
@@ -81,7 +81,7 @@ const TimeContainer = styled.div`
 		color: #fff;
 		margin-right: 5px;
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		justify-content: space-between;
 	}
 `

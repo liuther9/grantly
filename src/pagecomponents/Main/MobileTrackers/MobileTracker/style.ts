@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { _TABLET, _BLACK, _DARK_GRAY } from 'styles/variables'
+import { _MOBILE, _BLACK, _DARK_GRAY } from 'styles/variables'
 
 const Wrapper = styled.div`
 	display: flex;
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 	&:last-of-type {
 		margin-bottom: 0;
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 	}
 `
 
@@ -22,7 +22,7 @@ const TrackerName = styled.h2`
 	border-radius: 24px;
 	padding: 0 16px;
 	padding-left: 19px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		padding: 0 16px;
 		font-size: 14px;
 		color: ${_DARK_GRAY};
@@ -37,7 +37,7 @@ const Trackers = styled.div`
 	align-items: flex-start;
 	overflow-y: auto;
 	padding-left: 19px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		flex-direction: row;
 		align-items: center;
 		overflow-y: visible;

@@ -21,7 +21,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { setOtherTrackers, setTrackers } from 'store/slices/trackersSlice'
 import { showTracker } from 'store/slices/trackerSlice'
 // Style
-import { _TABLET } from 'styles/variables'
+import { _MOBILE } from 'styles/variables'
 import Spinner from 'components/Spinner'
 
 const Wrapper = styled.section<{ desktop: boolean }>`
@@ -29,7 +29,7 @@ const Wrapper = styled.section<{ desktop: boolean }>`
 	flex-direction: column;
 	width: ${(p) => (p.desktop ? 'calc(100vw - 264px)' : '100%')};
 	align-self: ${(p) => (p.desktop ? 'flex-end' : 'center')};
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		flex-direction: column;
 	}
 `

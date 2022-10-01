@@ -3,6 +3,8 @@ import { useEffect, SetStateAction, Dispatch, MouseEvent } from 'react'
 import styled from 'styled-components'
 import Button from 'components/Button'
 import { _GRAY, _PURPLE } from 'styles/variables'
+import { useAppSelector } from 'store/hooks'
+import { useRouter } from 'next/router'
 
 const StyledWrapper = styled.div`
 	z-index: 3;
@@ -57,6 +59,8 @@ type Props = {
 }
 
 const SuccessModal: React.FC<Props> = ({ isOpen, setOpen }) => {
+	const user = useAppSelector(state => state.userSlice)
+	const router = useRouter()
 	const handleOutsideClick = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
 		e.stopPropagation()
 	}
@@ -64,6 +68,7 @@ const SuccessModal: React.FC<Props> = ({ isOpen, setOpen }) => {
 	const handleSubmit = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
 		e.stopPropagation()
 		setOpen(false)
+		router.push('/')
 	}
 
 	useEffect(() => {
@@ -81,7 +86,7 @@ const SuccessModal: React.FC<Props> = ({ isOpen, setOpen }) => {
 				<ImgContainer>
 					<Image src={'/hatsup.png'} fill alt='user image' style={{ objectFit: 'cover' }} />
 				</ImgContainer>
-				<h1>Замечательно, Асанали!</h1>
+				<h1>Замечательно, {user.name}!</h1>
 				<p>Теперь ты можешь приступать к обучению</p>
 				<Button onClick={handleSubmit} styles={{
 					color: _PURPLE,

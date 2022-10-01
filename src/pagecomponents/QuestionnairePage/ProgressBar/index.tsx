@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { _GRAY, _LIGHT_GRAY, _PURPLE, _TABLET } from 'styles/variables'
+import { _GRAY, _LIGHT_GRAY, _PURPLE, _MOBILE } from 'styles/variables'
 
 const Progress = styled.div`
 	position: relative;
@@ -19,7 +19,7 @@ const Progress = styled.div`
 		background-color: ${_PURPLE};
 		transition: all 0.1s linear;
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		margin-bottom: 12px;
 	}
 `
@@ -53,7 +53,7 @@ const PageCount = styled.div`
 	span {
 		color: ${_GRAY}
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		display: flex;
 	}
 `

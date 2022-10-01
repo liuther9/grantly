@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { _TABLET, _PURPLE } from 'styles/variables'
+import { _MOBILE, _PURPLE } from 'styles/variables'
 
 const Wrapper = styled.section`
 	position: relative;
@@ -7,7 +7,7 @@ const Wrapper = styled.section`
 	flex-direction: column;
 	width: 648px;
 	height: 100%;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		width: 100%;
 	}
 `
@@ -22,7 +22,7 @@ const ButtonContainer = styled.div`
 	button {
 		width: 240px;
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		button {
 			width: 100%;
 		}

@@ -1,7 +1,7 @@
 import { Fragment, useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react'
 import Image from 'next/future/image'
-import { _PURPLE, _TABLET, _WHITE } from 'styles/variables'
+import { _PURPLE, _MOBILE, _WHITE } from 'styles/variables'
 import { Embla, EmblaContainer, EmblaSlide, ImgContainer, EmblaDots, EmblaDot } from './style'
 
 type PropType = {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { _PURPLE, _TABLET } from "styles/variables";
+import { _PURPLE, _MOBILE } from "styles/variables";
 
 const Section = styled.section`
 	display: flex;
@@ -9,7 +9,7 @@ const Section = styled.section`
 	background: ${_PURPLE};
 	border-radius: 40px 0px 0px 40px;
 	padding-left: 60px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		display: none;
 	}
 `

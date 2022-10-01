@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { _TABLET, _PURPLE, _WHITE } from 'styles/variables'
+import { _MOBILE, _PURPLE, _WHITE } from 'styles/variables'
 
 const Embla = styled.div`
 	display: none;
@@ -8,7 +8,7 @@ const Embla = styled.div`
 	height: 240px;
 	margin-top: auto;
 	margin-bottom: 16px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		display: block;
 	}
 `
@@ -38,7 +38,7 @@ const EmblaDots = styled.div`
 	list-style: none;
 	justify-content: center;
 	margin-bottom: 24px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		display: flex;
 	}
 `

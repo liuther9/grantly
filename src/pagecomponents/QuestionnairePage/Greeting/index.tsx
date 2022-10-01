@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { _GRAY, _TABLET } from "styles/variables"
+import { _GRAY, _MOBILE } from "styles/variables"
 
 const Wrapper = styled.div`
 	width: 357px;
@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	margin: 64px auto 0;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		display: none;
 	}
 `

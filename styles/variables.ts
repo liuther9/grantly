@@ -18,7 +18,8 @@ const _BLUE = '#4557FF'
 const _LIGHT_BLUE = '#0085FF'
 const _YELLOW = '#FFB800'
 
-const _TABLET = '960px'
+const _MOBILE = '980px'
+const _TABLET = '1180px'
 export {
 	_LIGHT_PURPLE,
 	_PURPLE,
@@ -32,7 +33,7 @@ export {
 	_ORANGE,
 	_BLACK,
 	_WHITE,
-	_TABLET,
+	_MOBILE,
 	_BLUE,
 	_LIGHT_BLUE,
 	_DARK_GRAY,
@@ -40,4 +41,5 @@ export {
 	_DARK_GRAY_2,
 	_YELLOW,
 	_RED_1,
+	_TABLET
 }

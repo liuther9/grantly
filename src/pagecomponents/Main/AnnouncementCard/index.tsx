@@ -1,7 +1,7 @@
 import { FiCalendar } from 'react-icons/fi'
 import Image from 'next/future/image'
 import styled from 'styled-components'
-import { _LIGHT_GRAY, _TABLET } from 'styles/variables'
+import { _LIGHT_GRAY, _MOBILE } from 'styles/variables'
 import { Btn } from 'pagecomponents/Main/CommonComponents'
 
 type Props = {
@@ -20,7 +20,7 @@ const Card = styled.div`
 		margin: 8px 8px 24px;
 		border-radius: 16px;
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		margin-right: 0;
 	}
 `

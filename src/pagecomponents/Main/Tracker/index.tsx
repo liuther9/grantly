@@ -5,7 +5,7 @@ import Button from 'components/Button'
 import Player from './Player'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { showTracker } from 'store/slices/trackerSlice'
-import { _DARK_GRAY, _LIGHT_GRAY, _PURPLE, _RED_1, _TABLET } from 'styles/variables'
+import { _DARK_GRAY, _LIGHT_GRAY, _TABLET, _PURPLE, _RED_1, _MOBILE } from 'styles/variables'
 import useWindowSize from 'src/helpers/useWindowSize'
 
 const Wrapper = styled.div`
@@ -21,6 +21,9 @@ const Wrapper = styled.div`
 	padding: 104px 32px;
 	border-left: 1px solid ${_LIGHT_GRAY};
 	@media (max-width: ${_TABLET}) {
+		width: 400px;
+	}
+	@media (max-width: ${_MOBILE}) {
 		width: 100%;
 		padding: 64px 0 0;
 	}
@@ -39,7 +42,7 @@ const TopContainer = styled.div`
 		transform: translateY(-50%);
 		left: 16px;
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		padding: 24px 16px;
 		justify-content: center;
 		svg {
@@ -58,7 +61,7 @@ const H1 = styled.h1`
 	line-height: 24px;
 	width: 100%;
 	padding-bottom: 16px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		padding: 0 16px 14px;
 	}
 `
@@ -72,7 +75,7 @@ const WebinarTime = styled.div`
 		margin-right: 5px;
 	}
 	padding-bottom: 16px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		padding: 0 16px 14px;
 	}
 `
@@ -104,7 +107,7 @@ const Content = styled.p`
 	line-height: 20px;
 	color: ${_DARK_GRAY};
 	margin-bottom: 32px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		padding: 0 16px;
 		margin-bottom: auto;
 	}
@@ -115,7 +118,7 @@ const BtnContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		width: 100%;
 		padding: 8px 16px;
 	}

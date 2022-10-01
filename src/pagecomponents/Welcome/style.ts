@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { _GRAY, _TABLET, _LIGHT_GRAY } from 'styles/variables'
+import { _GRAY, _MOBILE, _LIGHT_GRAY } from 'styles/variables'
 
 const StyledHeader = styled.h1`
 	width: 100%;
@@ -11,7 +11,7 @@ const StyledHeader = styled.h1`
 	&:first-of-type {
 		display: none;
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		margin-bottom: 16px;
 		text-align: center;
 		font-size: 20px;
@@ -34,7 +34,7 @@ const StyledParagraph = styled.p`
 	&:first-of-type {
 		display: none;
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		width: 282px;
 		text-align: center;
 		margin-bottom: auto;
@@ -80,7 +80,7 @@ const ButtonContainer = styled.div`
 			}
 		}
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		padding: 0 16px;
 		width: 100%;
 		&:last-of-type {
@@ -101,7 +101,7 @@ const Section = styled.section`
 	justify-content: center;
 	flex: 1;
 	margin: 0 auto 0 60px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		align-items: center;
 		display: flex;
 		align-items: center;
@@ -116,7 +116,7 @@ const StyledOtherMethods = styled.button`
 	color: ${_GRAY};
 	font-size: 14px;
 	line-height: 20px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		display: block;
 		margin-bottom: 32px;
 	}
@@ -142,7 +142,7 @@ const DesktopDivider = styled.div`
 	&::after {
 		background: linear-gradient(to left, #fff, ${_LIGHT_GRAY});
 	}
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		width: 100%;
 		display: none;
 	}

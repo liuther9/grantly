@@ -2,7 +2,7 @@ import Image from 'next/future/image'
 import styled from 'styled-components'
 import { FiUser } from 'react-icons/fi'
 import { useAppSelector } from 'store/hooks'
-import { _BLACK, _DARK_GRAY, _LIGHT_PURPLE, _TABLET } from 'styles/variables'
+import { _BLACK, _DARK_GRAY, _LIGHT_PURPLE, _MOBILE } from 'styles/variables'
 import LogoComponent from 'components/LogoComponent'
 import { MdOutlineLogout } from 'react-icons/md'
 import Button from 'components/Button'
@@ -25,7 +25,7 @@ const StyledHeader = styled.header<{ showHeader: boolean }>`
 	justify-content: space-between;
 	background-color: ${_LIGHT_PURPLE};
 	padding: 16px;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		display: flex;
 	}
 `

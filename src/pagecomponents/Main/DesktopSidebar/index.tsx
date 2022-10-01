@@ -23,7 +23,6 @@ const DesktopSidebar: React.FC<Props> = ({ tracker, setTracker, category, setCat
 		<Wrapper>
 			<Header>
 				<LogoComponent />
-				<span>Онлайн академия</span>
 			</Header>
 			<Nav>
 				<StyledDetails

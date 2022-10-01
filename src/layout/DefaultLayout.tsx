@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { useUser } from 'src/utils/useUser'
 import styled from 'styled-components'
 import Header from './Header'
-import { _TABLET } from 'styles/variables'
+import { _MOBILE } from 'styles/variables'
 
 const Main = styled.main<{ showHeader: boolean }>`
 	display: flex;
@@ -12,7 +12,7 @@ const Main = styled.main<{ showHeader: boolean }>`
 	justify-content: flex-start;
 	width: 100vw;
 	height: ${p => p.showHeader ? 'calc(100vh - 64px)' : '100vh'};
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		height: calc(100vh - 64px);
 	}
 `

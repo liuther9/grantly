@@ -1,7 +1,7 @@
 import { IoPlaySharp } from 'react-icons/io5'
 import styled from 'styled-components'
 import ReactPlayer from 'react-player'
-import { _LIGHT_GRAY, _TABLET } from 'styles/variables'
+import { _LIGHT_GRAY, _MOBILE } from 'styles/variables'
 
 type Props = {
 	url: string
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 	justify-content: center;
 	margin-bottom: 16px;
 	overflow: hidden;
-	@media (max-width: ${_TABLET}) {
+	@media (max-width: ${_MOBILE}) {
 		width: calc(100% - 32px);
 		margin: 0 16px 14px;
 	}
