@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@firebase/app-types': ^0.7.0
   '@reduxjs/toolkit': ^1.8.4
   '@types/js-cookie': ^3.0.2
   '@types/node': 18.7.5
@@ -18,6 +19,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: ^4.4.0
+  react-is: ^18.2.0
   react-number-format: ^4.9.3
   react-player: ^2.10.1
   react-redux: ^8.0.2
@@ -25,20 +27,22 @@ specifiers:
   typescript: 4.7.4
 
 dependencies:
+  '@firebase/app-types': 0.7.0
   '@reduxjs/toolkit': 1.8.5_kkwg4cbsojnjnupd3btipussee
   embla-carousel-react: 7.0.2_react@18.2.0
   firebase: 9.9.4
-  firebase-admin: 11.0.1
+  firebase-admin: 11.0.1_@firebase+app-types@0.7.0
   js-cookie: 3.0.1
   next: 12.3.0_biqbaboplfbrettd7655fr4n2y
   nuka-carousel: 5.3.0_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
+  react-is: 18.2.0
   react-number-format: 4.9.4_biqbaboplfbrettd7655fr4n2y
   react-player: 2.10.1_react@18.2.0
   react-redux: 8.0.2_76am3hp3mjvgy3cckgdecixdi4
-  styled-components: 5.3.5_biqbaboplfbrettd7655fr4n2y
+  styled-components: 5.3.5_7i5myeigehqah43i5u7wbekgba
 
 devDependencies:
   '@types/js-cookie': 3.0.2
@@ -341,15 +345,6 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@firebase/auth-interop-types/0.1.6_@firebase+util@1.6.3:
-    resolution: {integrity: sha512-etIi92fW3CctsmR9e3sYM3Uqnoq861M0Id9mdOPF6PWIg38BXL5k4upCNBggGUpLIS0H1grMOvy/wn1xymwe2g==}
-    peerDependencies:
-      '@firebase/app-types': 0.x
-      '@firebase/util': 1.x
-    dependencies:
-      '@firebase/util': 1.6.3
-    dev: false
-
   /@firebase/auth-interop-types/0.1.6_pbfwexsq7uf6mrzcwnikj3g37m:
     resolution: {integrity: sha512-etIi92fW3CctsmR9e3sYM3Uqnoq861M0Id9mdOPF6PWIg38BXL5k4upCNBggGUpLIS0H1grMOvy/wn1xymwe2g==}
     peerDependencies:
@@ -395,19 +390,6 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@firebase/database-compat/0.2.6:
-    resolution: {integrity: sha512-Ls1BAODaiDYgeJljrIgSuC7JkFIY/HNhhNYebzZSoGQU62RuvnaO3Qgp2EH6h2LzHyRnycNadfh1suROtPaUIA==}
-    dependencies:
-      '@firebase/component': 0.5.17
-      '@firebase/database': 0.13.6
-      '@firebase/database-types': 0.9.13
-      '@firebase/logger': 0.3.3
-      '@firebase/util': 1.6.3
-      tslib: 2.4.0
-    transitivePeerDependencies:
-      - '@firebase/app-types'
-    dev: false
-
   /@firebase/database-compat/0.2.6_@firebase+app-types@0.7.0:
     resolution: {integrity: sha512-Ls1BAODaiDYgeJljrIgSuC7JkFIY/HNhhNYebzZSoGQU62RuvnaO3Qgp2EH6h2LzHyRnycNadfh1suROtPaUIA==}
     dependencies:
@@ -426,19 +408,6 @@ packages:
     dependencies:
       '@firebase/app-types': 0.7.0
       '@firebase/util': 1.6.3
-    dev: false
-
-  /@firebase/database/0.13.6:
-    resolution: {integrity: sha512-5IZIBw2LT50Z8mwmKYmdX37p+Gg2HgeJsrruZmRyOSVgbfoY4Pg87n1uFx6qWqDmfL6HwQgwcrrQfVIXE3C5SA==}
-    dependencies:
-      '@firebase/auth-interop-types': 0.1.6_@firebase+util@1.6.3
-      '@firebase/component': 0.5.17
-      '@firebase/logger': 0.3.3
-      '@firebase/util': 1.6.3
-      faye-websocket: 0.11.4
-      tslib: 2.4.0
-    transitivePeerDependencies:
-      - '@firebase/app-types'
     dev: false
 
   /@firebase/database/0.13.6_@firebase+app-types@0.7.0:
@@ -1417,7 +1386,7 @@ packages:
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.5_biqbaboplfbrettd7655fr4n2y
+      styled-components: 5.3.5_7i5myeigehqah43i5u7wbekgba
     dev: false
 
   /babel-plugin-syntax-jsx/6.18.0:
@@ -2108,12 +2077,12 @@ packages:
       path-exists: 4.0.0
     dev: true
 
-  /firebase-admin/11.0.1:
+  /firebase-admin/11.0.1_@firebase+app-types@0.7.0:
     resolution: {integrity: sha512-rL3wlZbi2Kb/KJgcmj1YHlD4ZhfmhfgRO2YJialxAllm0tj1IQea878hHuBLGmv4DpbW9t9nLvX9kddNR2Y65Q==}
     engines: {node: '>=14'}
     dependencies:
       '@fastify/busboy': 1.1.0
-      '@firebase/database-compat': 0.2.6
+      '@firebase/database-compat': 0.2.6_@firebase+app-types@0.7.0
       '@firebase/database-types': 0.9.13
       '@types/node': 18.7.5
       jsonwebtoken: 8.5.1
@@ -3672,7 +3641,7 @@ packages:
     dev: false
     optional: true
 
-  /styled-components/5.3.5_biqbaboplfbrettd7655fr4n2y:
+  /styled-components/5.3.5_7i5myeigehqah43i5u7wbekgba:
     resolution: {integrity: sha512-ndETJ9RKaaL6q41B69WudeqLzOpY1A/ET/glXkNZ2T7dPjPqpPCXXQjDFYZWwNnE5co0wX+gTCqx9mfxTmSIPg==}
     engines: {node: '>=10'}
     requiresBuild: true
@@ -3691,6 +3660,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-is: 18.2.0
       shallowequal: 1.1.0
       supports-color: 5.5.0
     dev: false

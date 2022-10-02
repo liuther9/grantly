@@ -1,6 +1,6 @@
 import { IoPlaySharp } from 'react-icons/io5'
 import styled from 'styled-components'
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player/youtube'
 import { _LIGHT_GRAY, _MOBILE } from 'styles/variables'
 
 type Props = {

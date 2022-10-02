@@ -37,6 +37,11 @@ const Trackers = styled.div`
 	align-items: flex-start;
 	overflow-y: auto;
 	padding-left: 19px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+	&&::-webkit-scrollbar {
+		display: none;
+	}
 	@media (max-width: ${_MOBILE}) {
 		flex-direction: row;
 		align-items: center;

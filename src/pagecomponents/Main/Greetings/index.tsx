@@ -32,17 +32,19 @@ const BtnContainer = styled.div`
 `
 
 const Greetings: React.FC<Props> = ({ category }) => {
-	const username = useAppSelector((state) => state.userSlice.name)
+	const user = useAppSelector((state) => state.userSlice)
+	const username = user.name
 	const router = useRouter()
 	return (
 		<Wrapper>
 			{category === 'trackers' && (
 				<Fragment>
 					<H1>Привет, {username}</H1>
-					<Paragraph>Ты можешь запросить разбор своего study case и получить персональные рекомендации по поступлению и выборе профессии от наших координаторов</Paragraph>
+					{user.questionnaireStatus === '' && <Paragraph>Ты можешь запросить разбор своего study case и получить персональные рекомендации по поступлению и выборе профессии от наших координаторов</Paragraph>}
+					{user.questionnaireStatus === 'inProgress' && <Paragraph>{username}, круто что ты с нами. Скоро тебе будет доступен твой персональный разбор с пошаговыми рекомендациями в PDF формате</Paragraph>}
 					<BtnContainer>
-						<Button styles={{ color: _PURPLE }} onClick={() => router.push('/questionnaire')}>Заполнить анкету</Button>
-						{/* <Button styles={{ color: _PURPLE }}>Скачать (PDF)</Button> */}
+						{user.questionnaireStatus === '' && <Button styles={{ color: _PURPLE }} onClick={() => router.push('/questionnaire')}>Заполнить анкету</Button>}
+						{user.questionnaireStatus === 'ready' && <Button styles={{ color: _PURPLE }}>Скачать (PDF)</Button>}
 					</BtnContainer>
 				</Fragment>
 			)}

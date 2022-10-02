@@ -2,15 +2,16 @@ import { createSlice } from '@reduxjs/toolkit'
 import { IUser } from 'types/index'
 
 const initialState: IUser = {
-		id: '',
-		email: '',
-		token: '',
-		name: '',
-		profilePic: '',
-		trackers: null,
-		score: 0,
-		stage: '',
-	}
+	id: '',
+	email: '',
+	token: '',
+	name: '',
+	profilePic: '',
+	trackers: null,
+	score: 0,
+	stage: '',
+	questionnaireStatus: ''
+}
 
 export const userSlice = createSlice({
 	name: 'user',

@@ -41,7 +41,7 @@ const useUser = () => {
 
 				setUserCookie(token)
 				dispatch(setUser({ ...userData, ...userFromDb.data() }))
-				router.push('/')
+				// router.push('/')
 			} else {
 				removeUserCookie()
 				dispatch(setUser(null))

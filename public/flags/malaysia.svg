@@ -1,0 +1,13 @@
+<svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="24" height="18" rx="4" fill="white"/>
+<rect y="15.5077" width="24" height="1.29231" fill="#AF010D"/>
+<rect y="12.9231" width="24" height="1.29231" fill="#AF010D"/>
+<rect y="10.3385" width="24" height="1.29231" fill="#AF010D"/>
+<rect y="7.75385" width="24" height="1.29231" fill="#AF010D"/>
+<rect y="5.16923" width="24" height="1.29231" fill="#AF010D"/>
+<rect y="2.58462" width="24" height="1.29231" fill="#AF010D"/>
+<rect width="24" height="1.29231" fill="#AF010D"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H12.5714V10.344H0V0Z" fill="#1A47B8"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8 4.8H9.14286V6H8V4.8Z" fill="#FFDA2C"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8.57143 7.2C8.05029 7.9284 7.22057 8.4 6.28571 8.4C4.70857 8.4 3.42857 7.056 3.42857 5.4C3.42857 3.744 4.70857 2.4 6.28571 2.4C7.22057 2.4 8.05029 2.8716 8.57143 3.6H6.85714C5.91086 3.6 5.14286 4.4064 5.14286 5.4C5.14286 6.3936 5.91086 7.2 6.85714 7.2H8.57143Z" fill="#FFDA2C"/>
+</svg>

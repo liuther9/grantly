@@ -1,8 +1,7 @@
 <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_1_3841)">
 <rect width="24" height="18" rx="4" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M16 0H24V18H16V0Z" fill="#F93939"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H8V18H0V0Z" fill="#249F58"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.8H24V18H0V10.8ZM0 0H24V7.2H0V0Z" fill="#AF010D"/>
 </g>
 <defs>
 <clipPath id="clip0_1_3841">

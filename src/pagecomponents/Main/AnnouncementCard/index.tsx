@@ -1,4 +1,4 @@
-import { FiCalendar } from 'react-icons/fi'
+import { FiUsers } from 'react-icons/fi'
 import Image from 'next/future/image'
 import styled from 'styled-components'
 import { _LIGHT_GRAY, _MOBILE } from 'styles/variables'
@@ -74,8 +74,8 @@ const AnnouncementCard: React.FC<Props> = ({ i }) => {
 					<Image src={`/flags/${i.url}.svg`} alt='' width={24} height={18} />
 				</CardH1>
 				<CardDate>
-					<FiCalendar />
-					{i.date}
+					<FiUsers />
+					{'13/100'}
 				</CardDate>
 				<CardDesc>{i.desc}</CardDesc>
 				<Btn>Проголосовать</Btn>

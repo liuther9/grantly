@@ -21,7 +21,6 @@ const Wrapper = styled.div<{ wide: boolean }>`
 		transition: all 0.15s linear;
 		& + .slide {
 			transition: all 0.15s linear;
-			transform: ${props => props.wide ? '' : 'translateX(-90px)'};
 			opacity: 0.95;
 		}
 	}
@@ -36,7 +35,7 @@ const MobileAnnouncement = (props: Props) => {
 		<Wrapper wide={width > 768}>
 			<H1>Анонс</H1>
 			<Paragraph>Будьте одним из первых, кто добавит этот трекер</Paragraph>
-			<Carousel slidesToShow={width > 768 ? 2.5 : 1} withoutControls zoomScale={0.95} dragThreshold={0.2}>
+			<Carousel slidesToShow={width > 768 ? 2.5 : 1.3} withoutControls zoomScale={0.95} dragThreshold={0.2}>
 				{arr.map((i) => <AnnouncementCard i={i} key={i.title} />)}
 			</Carousel>
 		</Wrapper>

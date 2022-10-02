@@ -19,6 +19,7 @@ interface IUser {
 	trackers: any[] | null
 	score: number
 	stage: string
+	questionnaireStatus: '' | 'inProgress' | 'ready'
 }
 
 interface ITracker {

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { _PURPLE, _MOBILE, _DARK_PURPLE, _LIGHT_GRAY } from 'styles/variables'
+import { _PURPLE, _MOBILE, _DARK_PURPLE, _LIGHT_GRAY, _RED_1 } from 'styles/variables'
 
 const Wrapper = styled.div`
 	position: relative;
@@ -93,5 +93,37 @@ const StyledTime = styled.span`
 	line-height: 16px;
 	color: ${_LIGHT_GRAY};
 `
+const LiveIcon = styled.div`
+	width: 12px;
+	height: 12px;
+	border: 1px solid ${_RED_1};
+	background: transparent;
+	position: relative;
+	border-radius: 12px;
+	margin: 0 6px;
+	&::before {
+		position: absolute;
+		content: '';
+		width: 7.64px;
+		height: 7.64px;
+		top: 50%;
+		left: 50%;
+		background: ${_RED_1};
+		border-radius: 12px;
+		transform: translate(-50%, -50%);
+	}
+	& + span {
+		font-weight: 700;
+		margin-left: 5px;
+	}
+`
 
-export { StyledTime, TimeContainer, Wrapper, BottomContainer, Paragraph, H1 }
+const LiveText = styled.p`
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: -0.002em;
+	color: #FFFFFF;
+`
+
+export { StyledTime, TimeContainer, Wrapper, BottomContainer, Paragraph, H1, LiveIcon, LiveText }

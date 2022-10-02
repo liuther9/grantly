@@ -1,4 +1,4 @@
-import { ChangeEvent, Fragment, useState } from 'react'
+import { ChangeEvent, Fragment, useEffect, useState } from 'react'
 import NumberFormat from 'react-number-format'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { setQuestionnaire } from 'store/slices/questionnaireSlice'
@@ -12,44 +12,47 @@ import Radio from 'components/Radio'
 import CheckBox from 'components/CheckBox'
 import { _PURPLE } from 'styles/variables'
 import { BottomBorder, ButtonContainer, Wrapper, ProfContainer } from './style'
-
-const sex = [
-	{
-		title: 'Мужчина',
-		value: 'male'
-	},
-	{
-		title: 'Женщина',
-		value: 'female'
-	},
-	{
-		title: 'Не хочу отвечать',
-		value: 'other'
-	},
-]
+import { useRouter } from 'next/router'
+import { doc, setDoc } from 'firebase/firestore'
+import { db } from 'src/utils/firebaseConfig'
 
 const QuestionnairePage = () => {
+	const router = useRouter()
 	const [percent, setPercent] = useState(0)
+	const [extraProf, setExtraProf] = useState('')
 	const [page, setPage] = useState(1)
 	const [showModal, setModal] = useState(false)
-	const [professions, setProfessions] = useState(['ИТ-специалист', 'Бухгалтер', 'Дворник', '3Д-специалист', 'Творчество', 'Художник', 'Сфера обучении', 'Летчик', 'Силовые работы'])
+	const [disabled, setDisabled] = useState(true)
 	const answers = useAppSelector((state) => state.questionnaireSlice)
 	const user = useAppSelector((state) => state.userSlice)
-	const chosenSex = answers.sex
 	const careers = answers.careers
 	const dispatch = useAppDispatch()
 
-	const nextBtn = () => {
-		console.log(answers)
+	const nextBtn = async () => {
 		if (percent < 100) {
 			setPercent(percent + 100)
 			setPage(2)
-		} else setModal(true)
+		} else {
+			extraProf.length !== 0 && dispatch(setQuestionnaire({ careers: [...careers, extraProf]}))
+			await setDoc(doc(db, `questionnaire/${user.id}`), answers)
+			await setDoc(doc(db, `users/${user.id}`), { questionnaireStatus: 'inProgress' }, { merge: true })
+			setModal(true)
+		}
 	}
 
+	useEffect(() => {
+		const { city, careers, average, olymps, sex, instagram, name, birthdate } = answers
+		const allowed1 = city.length !== 0 && sex.length !== 0 && name.length !== 0 && instagram.length !== 0 && birthdate.length === 10
+		page === 1 && allowed1 && setDisabled(false)
+		page === 2 && careers.length !== 0 && olymps.length !== 0 && average.length !== 0 && setDisabled(false)
+		page === 2 && (careers.length === 0 || olymps.length === 0 || average.length === 0) && setDisabled(true)
+	}, [answers, page])
+
 	const backBtn = () => {
-		setPercent(percent - 100)
-		setPage(1)
+		if (page === 2) {
+			setPercent(percent - 100)
+			setPage(1)
+		} else router.back()
 	}
 
 	const setProf = (prof: string) => {
@@ -101,7 +104,7 @@ const QuestionnairePage = () => {
 							title={i.title}
 							value={i.value}
 							onChange={() => dispatch(setQuestionnaire({ sex: i.title }))}
-							checked={i.title === chosenSex}
+							checked={i.title === answers.sex}
 						/>)}
 					</CardComponent>
 				</Fragment>
@@ -116,12 +119,11 @@ const QuestionnairePage = () => {
 									value={prof}
 									key={prof}
 									onChange={() => setProf(prof)}
-									// onClick={() => setProf(prof)}
 									checked={careers.includes(prof) || false}
 								/>)
 							}
 						</ProfContainer>
-						<input placeholder='Свои варианты'/>
+						<input placeholder='Свои варианты' value={extraProf} onChange={e => setExtraProf(e.target.value)} />
 						<BottomBorder />
 					</CardComponent>
 					<CardComponent question={'Ваш средний балл (в уч. заведении)'} cardName={'average'} />
@@ -135,12 +137,11 @@ const QuestionnairePage = () => {
 						color: 'transparent',
 						border: _PURPLE,
 					}}
-					disabled={page === 1}
 				>
 					Назад
 				</Button>
 				<Spacer height={8} width={8} />
-				<Button onClick={nextBtn} styles={{ color: _PURPLE }}>
+				<Button onClick={nextBtn} styles={{ color: _PURPLE }} disabled={disabled}>
 					{percent < 100 ? 'Далее' : 'Готово'}
 				</Button>
 			</ButtonContainer>
@@ -148,5 +149,22 @@ const QuestionnairePage = () => {
 		</Wrapper>
 	)
 }
+
+const professions = ['ИТ-специалист', 'Бухгалтер', 'Дворник', '3Д-специалист', 'Творчество', 'Художник', 'Сфера обучении', 'Летчик', 'Силовые работы']
+
+const sex = [
+	{
+		title: 'Мужской',
+		value: 'male'
+	},
+	{
+		title: 'Женский',
+		value: 'female'
+	},
+	{
+		title: 'Не хочу отвечать',
+		value: 'other'
+	},
+]
 
 export default QuestionnairePage

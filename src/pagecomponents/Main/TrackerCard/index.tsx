@@ -1,11 +1,11 @@
 import Image from 'next/future/image'
+import { doc, updateDoc } from 'firebase/firestore'
 import { BsClock } from 'react-icons/bs'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { showTracker } from 'store/slices/trackerSlice'
-import { StyledTime, TimeContainer, Wrapper, BottomContainer, Paragraph, H1 } from './style'
 import { IStage } from 'types/index'
-import { doc, updateDoc } from 'firebase/firestore'
 import { db } from 'src/utils/firebaseConfig'
+import { StyledTime, TimeContainer, Wrapper, BottomContainer, Paragraph, H1, LiveIcon, LiveText } from './style'
 
 type Props = {
 	imgUrl: string
@@ -41,6 +41,8 @@ const TrackerCard: React.FC<Props> = ({ imgUrl, country, stage }) => {
 					<StyledTime>
 						{convertTime(duration)[0]} час {convertTime(duration)[1]} мин.
 					</StyledTime>
+					{!stage.live && <LiveIcon />}
+					{!stage.live && <LiveText>LIVE</LiveText>}
 				</TimeContainer>
 			</BottomContainer>
 		</Wrapper>

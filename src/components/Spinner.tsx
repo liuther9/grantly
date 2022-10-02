@@ -1,6 +1,6 @@
-import { RiLoaderFill } from 'react-icons/ri'
+import { RiLoader4Fill } from 'react-icons/ri'
 import styled, { keyframes } from 'styled-components'
-import { _BLACK } from 'styles/variables'
+import { _PURPLE } from 'styles/variables'
 
 const rotate360 = keyframes`
   from {
@@ -19,11 +19,11 @@ const Wrapper = styled.div`
 	height: fit-content;
 	margin-left: 16px;
 	svg {
-		animation: ${rotate360} 2s linear infinite;
-		font-size: 24px;
-		color: ${_BLACK};
+		animation: ${rotate360} 1s linear infinite;
+		font-size: 32px;
+		color: ${_PURPLE};
 	}
 `
-const Spinner = () => <Wrapper><RiLoaderFill /></Wrapper>
+const Spinner = () => <Wrapper><RiLoader4Fill /></Wrapper>
 
 export default Spinner
