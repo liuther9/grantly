@@ -12,7 +12,7 @@ import { RiArrowLeftLine, RiArrowRightLine } from 'react-icons/ri'
 const Tracker = () => {
 	const dispatch = useAppDispatch()
 	const state = useAppSelector(state => state.trackerSlice)
-	const { title, name, live, description, date } = { ...state.stage }
+	const { title, name, live, description, date, id } = { ...state.stage }
 	const { width } = useWindowSize()
 	
   useEffect(() => {
@@ -45,7 +45,7 @@ const Tracker = () => {
 			</WebinarTime>
 			<Content>{description}</Content>
 			<NavContainer>
-				<Btn><RiArrowLeftLine /></Btn>
+				{id !== 1 && <Btn><RiArrowLeftLine /></Btn>}
 				<Btn><RiArrowRightLine /></Btn>
 			</NavContainer>
 			<BtnContainer>

@@ -119,8 +119,11 @@ const NavContainer = styled.div`
 	width: 100%;
 	height: fit-content;
 	margin-bottom: 16px;
+	button:last-of-type {
+		margin-left: auto;
+	}
 	@media (max-width: ${_MOBILE}) {
-	padding: 0 16px;
+		padding: 0 16px;
 	}
 `
 
