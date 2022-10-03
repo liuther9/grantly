@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { IAnnouncement } from "types/index"
-import AnnouncementCard from "../AnnouncementCard"
+import styled from 'styled-components'
+import { IAnnouncement } from 'types/index'
+import AnnouncementCard from 'src/pagecomponents/Main/AnnouncementCard'
 
 type Props = {
 	announcements: IAnnouncement[]
@@ -15,9 +15,13 @@ const Wrapper = styled.div`
 	overflow-x: auto;
 `
 
-const DesktopAnnouncements:React.FC<Props> = ({ announcements }) => {
+const DesktopAnnouncements: React.FC<Props> = ({ announcements }) => {
 	return (
-		<Wrapper>{announcements.map(i => <AnnouncementCard key={i.id} card={i} />) }</Wrapper>
+		<Wrapper>
+			{announcements.map((i) => (
+				<AnnouncementCard key={i.id} card={i} />
+			))}
+		</Wrapper>
 	)
 }
 
