@@ -23,6 +23,7 @@ import { showTracker } from 'store/slices/trackerSlice'
 // Style
 import { _MOBILE } from 'styles/variables'
 import Spinner from 'components/Spinner'
+import { setAnnouncements } from 'store/slices/announcementsSlice'
 
 const Wrapper = styled.section<{ desktop: boolean }>`
 	display: flex;
@@ -45,6 +46,16 @@ const Main: NextPage = () => {
 	const [tracker, setTracker] = useState(userTracker || '')
 	const [desktopCategory, setDesktopCategory] = useState('trackers')
 	const [loading, setLoading] = useState(false)
+	const announcements = useAppSelector(state => state.announcementsSlice)
+
+	//GET ANNOUNCEMENTS
+	useEffect(() => {
+		const getData = async () => {
+			const data = await getDocs(collection(db, 'announcements'))
+			data.forEach(item => dispatch(setAnnouncements(item.data())))
+		}
+		getData()
+	}, [dispatch])
 
 	// GET TRACKERS
 	useEffect(() => {
@@ -109,7 +120,7 @@ const Main: NextPage = () => {
 					{loading && <Spinner />}
 					{desktopCategory === 'trackers' && <Tracker />}
 					{desktopCategory === 'otherTrackers' && <DesktopOtherTrackers />}
-					{desktopCategory === 'announcement' && <DesktopAnnouncements />}
+					{desktopCategory === 'announcement' && <DesktopAnnouncements announcements={announcements} />}
 				</Fragment>
 			)}
 			{width < 960 && (
@@ -117,7 +128,7 @@ const Main: NextPage = () => {
 					<MobileTrackers trackers={trackers} />
 					{loading && <Spinner />}
 					{/* <MobileOtherTrackers /> */}
-					<MobileAnnouncement />
+					<MobileAnnouncement width={width} announcements={announcements} />
 					<MobileRanking />
 					{show && <Tracker />}
 				</Fragment>
