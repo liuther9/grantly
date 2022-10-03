@@ -8,7 +8,7 @@ import { _BLACK } from 'styles/variables'
 
 const Wrapper = styled.div`
 	width: 100%;
-	height: 96px;
+	height: fit-content;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -37,6 +37,7 @@ const H1 = styled.h1`
 	line-height: 16px;
 	width: 70%;
 	color: ${_BLACK};
+	margin-bottom: 20px;
 `
 
 const ImageWrapper = styled.div`

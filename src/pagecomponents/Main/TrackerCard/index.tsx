@@ -39,7 +39,7 @@ const TrackerCard: React.FC<Props> = ({ imgUrl, country, stage }) => {
 				<TimeContainer>
 					<BsClock />
 					<StyledTime>
-						{convertTime(duration)[0]} час {convertTime(duration)[1]} мин.
+						~ {convertTime(duration)[0]} час {convertTime(duration)[1]} мин.
 					</StyledTime>
 					{!stage.live && <LiveIcon />}
 					{!stage.live && <LiveText>LIVE</LiveText>}

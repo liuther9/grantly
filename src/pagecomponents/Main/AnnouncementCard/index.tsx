@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { _LIGHT_GRAY, _MOBILE } from 'styles/variables'
 import { Btn } from 'pagecomponents/Main/CommonComponents'
 import { IAnnouncement } from 'types/index'
-import { arrayUnion, doc, setDoc } from 'firebase/firestore'
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from 'src/utils/firebaseConfig'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { setVote } from 'store/slices/announcementsSlice'
@@ -77,12 +77,10 @@ const AnnouncementCard: React.FC<Props> = ({
 	const dispatch = useAppDispatch()
 	const user = useAppSelector((state) => state.userSlice)
 	const vote = async () => {
-		!votes.includes(user.id) &&
-			await setDoc(
-				doc(db, `announcements/${id}`),
-				{ votes: arrayUnion(user.id) },
-				{ merge: true }
-			).then(() => dispatch(setVote({ id, user: user.id })))
+		if (!votes.includes(user.id)) {
+			dispatch(setVote({ id, user: user.id }))
+			await updateDoc(doc(db, `announcements/${id}`), { votes: arrayUnion(user.id) })
+		}
 	}
 
 	return (
