@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import { H1, Paragraph } from 'pagecomponents/Main/CommonComponents'
 import AnnouncementCard from 'pagecomponents/Main/AnnouncementCard'
-import { _LIGHT_GRAY } from 'styles/variables'
 import { IAnnouncement } from 'types/index'
+import Spinner from 'components/Spinner'
 
 type Props = {
-	width: number,
+	width: number
 	announcements: IAnnouncement[]
+	loading: boolean
 }
 
 const Wrapper = styled.div<{ wide: boolean }>`
@@ -30,13 +31,16 @@ const Container = styled.div`
 	}
 `
 
-const MobileAnnouncement:React.FC<Props> = ({ width, announcements }) => {
+const MobileAnnouncement: React.FC<Props> = ({ width, announcements, loading }) => {
 	return (
 		<Wrapper wide={width > 768}>
 			<H1>Анонс</H1>
 			<Paragraph>Будьте одним из первых, кто добавит этот трекер</Paragraph>
+			{loading && <Spinner />}
 			<Container>
-				{announcements.map((i) => <AnnouncementCard card={i} key={i.id} />)}
+				{announcements.map((i) => (
+					<AnnouncementCard card={i} key={i.id} />
+				))}
 			</Container>
 		</Wrapper>
 	)

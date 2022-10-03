@@ -10,7 +10,7 @@ const initialState: IUser = {
 	trackers: null,
 	score: 0,
 	stage: '',
-	questionnaireStatus: ''
+	questionnaireStatus: '',
 }
 
 export const userSlice = createSlice({
@@ -18,11 +18,12 @@ export const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser: (state, { payload }) => {
-			if(payload === null) return initialState
-			else return {
-				...state,
-				...payload,
-			}
+			if (payload === null) return initialState
+			else
+				return {
+					...state,
+					...payload,
+				}
 		},
 	},
 })

@@ -42,11 +42,12 @@ interface IStage {
 }
 
 interface IAnnouncement {
-	id: string,
-	name: string,
-	description: string,
-	maxUsers: number,
+	id: string
+	name: string
+	description: string
+	maxUsers: number
 	img: string
+	votes: string[]
 }
 
 export { IQuestionnare, IUser, ITracker, IStage, IAnnouncement }

@@ -1,9 +1,11 @@
+import Spinner from "components/Spinner"
 import styled from "styled-components"
 import { ITracker } from "types/index"
 import MobileTracker from "./MobileTracker"
 
 type Props = {
-	trackers: ITracker[]
+	trackers: ITracker[],
+	loading: boolean
 }
 
 const Wrapper = styled.div`
@@ -20,10 +22,11 @@ const H1 = styled.h1`
 	padding: 16px;
 `
 
-const MobileTrackers: React.FC<Props> = ({ trackers }) => {
+const MobileTrackers: React.FC<Props> = ({ trackers, loading }) => {
 	return (
 		<Wrapper>
 			<H1>Трекеры</H1>
+			{loading && <Spinner />}
 			{trackers && trackers.map(tracker => <MobileTracker key={tracker.title} title={tracker.title} country={tracker.name} />)}
 		</Wrapper>
 	)

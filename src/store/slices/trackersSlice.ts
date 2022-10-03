@@ -23,9 +23,9 @@ export const trackersSlice = createSlice({
 		addTracker: (state, { payload }: PayloadAction<ITracker>) => {
 			return {
 				trackers: [...state.trackers, payload],
-				otherTrackers: state.otherTrackers.filter(i => i.title !== payload.title)
+				otherTrackers: state.otherTrackers.filter((i) => i.title !== payload.title),
 			}
-		}
+		},
 	},
 })
 

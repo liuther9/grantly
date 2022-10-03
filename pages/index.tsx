@@ -15,15 +15,15 @@ import DesktopOtherTrackers from 'pagecomponents/Main/DesktopOtherTrackers'
 import DesktopAnnouncements from 'pagecomponents/Main/DesktopAnnouncements'
 import Tracker from 'pagecomponents/Main/Tracker'
 import Greetings from 'pagecomponents/Main/Greetings'
+import Spinner from 'components/Spinner'
 // Functions and utils
 import useWindowSize from 'src/helpers/useWindowSize'
 import { useAppDispatch, useAppSelector } from 'store/hooks'
 import { setOtherTrackers, setTrackers } from 'store/slices/trackersSlice'
 import { showTracker } from 'store/slices/trackerSlice'
+import { setAnnouncements } from 'store/slices/announcementsSlice'
 // Style
 import { _MOBILE } from 'styles/variables'
-import Spinner from 'components/Spinner'
-import { setAnnouncements } from 'store/slices/announcementsSlice'
 
 const Wrapper = styled.section<{ desktop: boolean }>`
 	display: flex;
@@ -46,13 +46,16 @@ const Main: NextPage = () => {
 	const [tracker, setTracker] = useState(userTracker || '')
 	const [desktopCategory, setDesktopCategory] = useState('trackers')
 	const [loading, setLoading] = useState(false)
+	const [announcementsLoading, setAnnouncementsLoading] = useState(false)
 	const announcements = useAppSelector(state => state.announcementsSlice)
 
 	//GET ANNOUNCEMENTS
 	useEffect(() => {
 		const getData = async () => {
+			setAnnouncementsLoading(true)
 			const data = await getDocs(collection(db, 'announcements'))
 			data.forEach(item => dispatch(setAnnouncements(item.data())))
+			setAnnouncementsLoading(false)
 		}
 		getData()
 	}, [dispatch])
@@ -120,15 +123,13 @@ const Main: NextPage = () => {
 					{loading && <Spinner />}
 					{desktopCategory === 'trackers' && <Tracker />}
 					{desktopCategory === 'otherTrackers' && <DesktopOtherTrackers />}
-					{desktopCategory === 'announcement' && <DesktopAnnouncements announcements={announcements} />}
+					{desktopCategory === 'announcement' && <DesktopAnnouncements announcements={announcements} loading={announcementsLoading} />}
 				</Fragment>
 			)}
 			{width < 960 && (
 				<Fragment>
-					<MobileTrackers trackers={trackers} />
-					{loading && <Spinner />}
-					{/* <MobileOtherTrackers /> */}
-					<MobileAnnouncement width={width} announcements={announcements} />
+					<MobileTrackers trackers={trackers} loading={loading} />
+					<MobileAnnouncement width={width} announcements={announcements} loading={announcementsLoading} />
 					<MobileRanking />
 					{show && <Tracker />}
 				</Fragment>

@@ -4,6 +4,10 @@ import styled from 'styled-components'
 import { _LIGHT_GRAY, _MOBILE } from 'styles/variables'
 import { Btn } from 'pagecomponents/Main/CommonComponents'
 import { IAnnouncement } from 'types/index'
+import { arrayUnion, doc, setDoc } from 'firebase/firestore'
+import { db } from 'src/utils/firebaseConfig'
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import { setVote } from 'store/slices/announcementsSlice'
 
 type Props = {
 	card: IAnnouncement
@@ -67,7 +71,20 @@ const CardDesc = styled.p`
 	line-height: 16px;
 	margin-bottom: auto;
 `
-const AnnouncementCard: React.FC<Props> = ({ card: { name, id, description, maxUsers } }) => {
+const AnnouncementCard: React.FC<Props> = ({
+	card: { name, id, description, maxUsers, votes },
+}) => {
+	const dispatch = useAppDispatch()
+	const user = useAppSelector((state) => state.userSlice)
+	const vote = async () => {
+		!votes.includes(user.id) &&
+			await setDoc(
+				doc(db, `announcements/${id}`),
+				{ votes: arrayUnion(user.id) },
+				{ merge: true }
+			).then(() => dispatch(setVote({ id, user: user.id })))
+	}
+
 	return (
 		<Card>
 			<Image src={`/usa.png`} alt='' width={264} height={184} />
@@ -78,10 +95,10 @@ const AnnouncementCard: React.FC<Props> = ({ card: { name, id, description, maxU
 				</CardH1>
 				<CardDate>
 					<FiUsers />
-					{`${13}/${maxUsers}`}
+					{`${votes.length}/${maxUsers}`}
 				</CardDate>
 				<CardDesc>{description}</CardDesc>
-				<Btn>Проголосовать</Btn>
+				<Btn onClick={vote}>Проголосовать</Btn>
 			</CardBotContainer>
 		</Card>
 	)

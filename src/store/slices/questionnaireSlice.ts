@@ -13,18 +13,15 @@ const initialState: IQuestionnare = {
 }
 
 export const questionnaireSlice = createSlice({
-  name: 'questionnaire',
-  initialState,
-  reducers: {
-    setQuestionnaire: (
-      state,
-      { payload }: PayloadAction<Partial<IQuestionnare>>
-		) => {
+	name: 'questionnaire',
+	initialState,
+	reducers: {
+		setQuestionnaire: (state, { payload }: PayloadAction<Partial<IQuestionnare>>) => {
 			return {
 				...state,
 				...payload,
 			}
-    },
+		},
 	},
 })
 
