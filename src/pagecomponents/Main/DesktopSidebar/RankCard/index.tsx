@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 	&::after {
 		content: '';
 		position: absolute;
-		top: 26px;
+		bottom: -10px;
 		right: -15px;
 		width: 80px;
 		height: 80px;
@@ -43,7 +43,7 @@ const H1 = styled.h1`
 const ImageWrapper = styled.div`
 	z-index: 1;
 	position: absolute;
-	top: 34px;
+	bottom: -10px;
 	right: -15px;
 	display: flex;
 	align-items: center;
@@ -66,7 +66,12 @@ const Btn = styled.button`
 	font-weight: 500;
 	width: fit-content;
 	border-radius: 100px;
+	color: ${_BLACK};
+	font-weight: 600;
 	cursor: pointer;
+	svg {
+		font-size: 18px;
+	}
 `
 
 const RankCard = () => {
