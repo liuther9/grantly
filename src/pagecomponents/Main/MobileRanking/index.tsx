@@ -17,13 +17,13 @@ const MobileRanking = () => {
 
 	useEffect(() => {
 		const doit = async () => {
-			setLoading(true)
+			ranks.length === 0 && setLoading(true)
 			const firstUsers = await getDocs(query(collection(db, 'users'), orderBy('score', 'desc'), limit(5)))
 			firstUsers.forEach((i) => dispatch(setRanking(i.data())))
 			setLoading(false)
 		}
 		doit()
-	}, [dispatch, user])
+	}, [dispatch, ranks.length, user])
 
 	return (
 		<Wrapper>
