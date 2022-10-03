@@ -24,6 +24,7 @@ const IconContainer = styled.div`
 	height: 64px;
 	svg {
 		color: #fff;
+		font-size: 24px;
 	}
 `
 const Description = styled.p`

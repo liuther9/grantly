@@ -3,9 +3,10 @@ import Image from 'next/future/image'
 import styled from 'styled-components'
 import { _LIGHT_GRAY, _MOBILE } from 'styles/variables'
 import { Btn } from 'pagecomponents/Main/CommonComponents'
+import { IAnnouncement } from 'types/index'
 
 type Props = {
-	i: any
+	card: IAnnouncement
 }
 
 const Card = styled.div`
@@ -29,6 +30,7 @@ const CardBotContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	flex: 1;
 	padding: 0 24px 32px;
 `
 
@@ -38,6 +40,7 @@ const CardH1 = styled.h1`
 	line-height: 24px;
 	color: #fff;
 	margin-bottom: 8px;
+	white-space: nowrap;
 	img {
 		margin-left: 8px;
 		margin-bottom: -1px;
@@ -62,22 +65,22 @@ const CardDesc = styled.p`
 	color: ${_LIGHT_GRAY};
 	font-size: 12px;
 	line-height: 16px;
-	margin-bottom: 24px;
+	margin-bottom: auto;
 `
-const AnnouncementCard: React.FC<Props> = ({ i }) => {
+const AnnouncementCard: React.FC<Props> = ({ card: { name, id, description, maxUsers } }) => {
 	return (
-		<Card key={i.title}>
-			<Image src={`/${i.url}.png`} alt='' width={264} height={184} />
+		<Card>
+			<Image src={`/usa.png`} alt='' width={264} height={184} />
 			<CardBotContainer>
 				<CardH1>
-					{i.title}
-					<Image src={`/flags/${i.url}.svg`} alt='' width={24} height={18} />
+					{name}
+					<Image src={`/flags/${id}.svg`} alt='' width={24} height={18} />
 				</CardH1>
 				<CardDate>
 					<FiUsers />
-					{'13/100'}
+					{`${13}/${maxUsers}`}
 				</CardDate>
-				<CardDesc>{i.desc}</CardDesc>
+				<CardDesc>{description}</CardDesc>
 				<Btn>Проголосовать</Btn>
 			</CardBotContainer>
 		</Card>

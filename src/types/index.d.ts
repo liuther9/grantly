@@ -41,4 +41,12 @@ interface IStage {
 	title: string
 }
 
-export { IQuestionnare, IUser, ITracker, IStage }
+interface IAnnouncement {
+	id: string,
+	name: string,
+	description: string,
+	maxUsers: number,
+	img: string
+}
+
+export { IQuestionnare, IUser, ITracker, IStage, IAnnouncement }

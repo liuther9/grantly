@@ -14,6 +14,18 @@ interface FormElements extends HTMLFormControlsCollection {
 	url: HTMLInputElement,
 }
 
+interface FormElementsAnnouncement extends HTMLFormControlsCollection {
+	flag: HTMLInputElement,
+	name: HTMLInputElement,
+	description: HTMLInputElement,
+	maxUsers: HTMLInputElement,
+	img: HTMLInputElement
+}
+
+interface FormElementAnnouncement extends HTMLFormElement {
+	readonly elements: FormElementsAnnouncement
+}
+
 interface FormElement extends HTMLFormElement {
   readonly elements: FormElements
 }
@@ -39,6 +51,18 @@ const AdminPanel: NextPage = () => {
 	const addBtn = (tracker: string, stage:any, btn:any, val:any) => {
 		const docref = doc(db, `trackers/${tracker}/stages/${stage}/buttons/${btn}`)
 		setDoc(docref, val)
+	}
+
+	const handleSubmitAnnouncement = async (e: FormEvent<FormElementAnnouncement>) => {
+		e.preventDefault()
+		const { name, description, flag, maxUsers, img } = e.currentTarget.elements
+		await setDoc(doc(db, `announcements/${flag.value}`), {
+			id: flag.value,
+			name: name.value,
+			description: description.value,
+			maxUsers: maxUsers.valueAsNumber,
+			img: img.value
+		})
 	}
 
 	const handleSubmitBtn = (e: FormEvent<FormElement1>) => {
@@ -67,6 +91,15 @@ const AdminPanel: NextPage = () => {
 
 	return (
 		<div>
+			<form onSubmit={handleSubmitAnnouncement} style={{ marginBottom: 100}}>
+				<h1>ANONSI</h1>
+				<input type='text' name='name' placeholder='name' />
+				<textarea name='description' placeholder='description' />
+				<input type='text' name='flag' placeholder='flag' />
+				<input type='text' name='img' placeholder='img' />
+				<input type='number' name='maxUsers' placeholder='maxUsers' defaultValue={100} />
+				<button>Добавить</button>
+			</form>
 			<form onSubmit={handleSubmit} style={{ marginBottom: 100}}>
 				<h1>1 этап</h1>
 				<textarea name='description' placeholder='description' defaultValue={'Все об образовании в Турции (бакалавр, магистратура, языковые курсы)'} />

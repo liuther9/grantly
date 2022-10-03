@@ -41,7 +41,7 @@ const Greetings: React.FC<Props> = ({ category }) => {
 				<Fragment>
 					<H1>Привет, {username}</H1>
 					{user.questionnaireStatus === '' && <Paragraph>Ты можешь запросить разбор своего study case и получить персональные рекомендации по поступлению и выборе профессии от наших координаторов</Paragraph>}
-					{user.questionnaireStatus === 'inProgress' && <Paragraph>{username}, круто что ты с нами. Скоро тебе будет доступен твой персональный разбор с пошаговыми рекомендациями в PDF формате</Paragraph>}
+					{user.questionnaireStatus === 'inProgress' && <Paragraph>Круто что ты с нами. Скоро тебе будет доступен твой персональный разбор с пошаговыми рекомендациями в PDF формате</Paragraph>}
 					<BtnContainer>
 						{user.questionnaireStatus === '' && <Button styles={{ color: _PURPLE }} onClick={() => router.push('/questionnaire')}>Заполнить анкету</Button>}
 						{user.questionnaireStatus === 'ready' && <Button styles={{ color: _PURPLE }}>Скачать (PDF)</Button>}

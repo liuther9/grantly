@@ -44,7 +44,7 @@ const QuestionnairePage = () => {
 		const { city, careers, average, olymps, sex, instagram, name, birthdate } = answers
 		const allowed1 = city.length !== 0 && sex.length !== 0 && name.length !== 0 && instagram.length !== 0 && birthdate.length === 10
 		page === 1 && allowed1 && setDisabled(false)
-		page === 2 && careers.length !== 0 && olymps.length !== 0 && average.length !== 0 && setDisabled(false)
+		page === 2 && careers.length !== 0 && olymps.length !== 0 && average.length !== 0 && allowed1 && setDisabled(false)
 		page === 2 && (careers.length === 0 || olymps.length === 0 || average.length === 0) && setDisabled(true)
 	}, [answers, page])
 
