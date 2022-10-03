@@ -57,7 +57,7 @@ const Greetings: React.FC<Props> = ({ category }) => {
 			{category === 'announcement' && (
 				<Fragment>
 					<H1>{username}, - всё, что тебя ждёт в будущем</H1>
-					<Paragraph>Мы для тебя подгатавливаем несколько новых трекеров. Запланируй и юудь в курсе</Paragraph>
+					<Paragraph>Регистрируйся на новые трекеры. Давай вместе наберем нужное кол-во юзеров для каждого из трекеров для мощного старта</Paragraph>
 				</Fragment>
 			)}
 		</Wrapper>

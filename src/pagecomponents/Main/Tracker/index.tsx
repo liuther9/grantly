@@ -11,8 +11,8 @@ import { RiArrowLeftLine, RiArrowRightLine } from 'react-icons/ri'
 
 const Tracker = () => {
 	const dispatch = useAppDispatch()
-	const state = useAppSelector(state => state.trackerSlice)
-	const { title, name, live, description, date, id } = { ...state.stage }
+	const tracker = useAppSelector(state => state.trackerSlice)
+	const { title, name, live, description, date, id } = { ...tracker.stage }
 	const { width } = useWindowSize()
 	
   useEffect(() => {
@@ -23,6 +23,9 @@ const Tracker = () => {
 		}
 	}, [width])
 
+	const back = () => {
+		// dispatch(showTracker({ stage:  }))
+	}
 	return (
 		<Wrapper>
 			<TopContainer>
@@ -46,7 +49,7 @@ const Tracker = () => {
 			<Content>{description}</Content>
 			<NavContainer>
 				{id !== 1 && <Btn><RiArrowLeftLine /></Btn>}
-				<Btn><RiArrowRightLine /></Btn>
+				{id !== 19 && <Btn><RiArrowRightLine /></Btn>}
 			</NavContainer>
 			<BtnContainer>
 				<Button styles={{ color: _PURPLE }}>{'Запланировать'}</Button>

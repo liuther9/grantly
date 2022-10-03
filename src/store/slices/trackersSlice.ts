@@ -26,6 +26,9 @@ export const trackersSlice = createSlice({
 				otherTrackers: state.otherTrackers.filter((i) => i.title !== payload.title),
 			}
 		},
+		setStages: (state, { payload }) => {
+			// state.trackers.find(i => i.title === payload.)
+		}
 	},
 })
 

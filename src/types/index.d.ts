@@ -27,6 +27,7 @@ interface ITracker {
 	name: string
 	private: boolean
 	description: string
+	stages: IStage[]
 }
 
 interface IStage {

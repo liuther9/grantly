@@ -16,7 +16,7 @@ const Wrapper = styled.div<{ wide: boolean }>`
 	width: 100%;
 	margin: 8px 0 48px;
 	${Paragraph} {
-		width: 244px;
+		width: 80%;
 	}
 `
 
@@ -26,6 +26,11 @@ const Container = styled.div`
 	overflow-x: auto;
 	overflow-y: hidden;
 	padding: 10px 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+	&&::-webkit-scrollbar {
+		display: none;
+	}
 	&& > div {
 		margin-left: 16px;
 	}
@@ -35,7 +40,7 @@ const MobileAnnouncement: React.FC<Props> = ({ width, announcements, loading }) 
 	return (
 		<Wrapper wide={width > 768}>
 			<H1>Анонс</H1>
-			<Paragraph>Будьте одним из первых, кто добавит этот трекер</Paragraph>
+			<Paragraph>Регистрируйся на новые трекеры. Давай вместе наберем нужное кол-во юзеров для каждого из трекеров для мощного старта</Paragraph>
 			{loading && <Spinner />}
 			<Container>
 				{announcements.map((i) => (

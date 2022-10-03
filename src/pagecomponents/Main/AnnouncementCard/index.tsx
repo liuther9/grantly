@@ -76,6 +76,7 @@ const AnnouncementCard: React.FC<Props> = ({
 }) => {
 	const dispatch = useAppDispatch()
 	const user = useAppSelector((state) => state.userSlice)
+
 	const vote = async () => {
 		if (!votes.includes(user.id)) {
 			dispatch(setVote({ id, user: user.id }))
@@ -89,7 +90,7 @@ const AnnouncementCard: React.FC<Props> = ({
 			<CardBotContainer>
 				<CardH1>
 					{name}
-					<Image src={`/flags/${id}.svg`} alt='' width={24} height={18} />
+					{id !== '0' && id !== '1' && <Image src={`/flags/${id}.svg`} alt='' width={24} height={18} />}
 				</CardH1>
 				<CardDate>
 					<FiUsers />

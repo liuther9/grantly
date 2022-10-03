@@ -5,8 +5,8 @@ const Wrapper = styled.div`
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	min-width: 421px;
-	max-width: 421px;
+	min-width: 360px;
+	max-width: 360px;
 	height: 160px;
 	padding: 32px 24px;
 	border-radius: 24px;

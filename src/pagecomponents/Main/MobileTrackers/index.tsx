@@ -1,10 +1,11 @@
-import Spinner from "components/Spinner"
-import styled from "styled-components"
-import { ITracker } from "types/index"
-import MobileTracker from "./MobileTracker"
+import Spinner from 'components/Spinner'
+import styled from 'styled-components'
+import { ITracker } from 'types/index'
+import { Paragraph } from 'src/pagecomponents/Main/CommonComponents'
+import MobileTracker from './MobileTracker'
 
 type Props = {
-	trackers: ITracker[],
+	trackers: ITracker[]
 	loading: boolean
 }
 
@@ -26,8 +27,12 @@ const MobileTrackers: React.FC<Props> = ({ trackers, loading }) => {
 	return (
 		<Wrapper>
 			<H1>Трекеры</H1>
+			<Paragraph>Подключайся к эфирам, проходи этап за этапом, продвигаясь по трекеру</Paragraph>
 			{loading && <Spinner />}
-			{trackers && trackers.map(tracker => <MobileTracker key={tracker.title} title={tracker.title} country={tracker.name} />)}
+			{trackers &&
+				trackers.map((tracker) => (
+					<MobileTracker key={tracker.title} title={tracker.title} country={tracker.name} />
+				))}
 		</Wrapper>
 	)
 }
