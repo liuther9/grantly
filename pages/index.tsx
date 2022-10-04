@@ -53,9 +53,8 @@ const Main: NextPage = () => {
 	useEffect(() => {
 		const getData = async () => {
 			setAnnouncementsLoading(true)
-			const data = await getDocs(collection(db, 'announcements'))
+			const data = await getDocs(collection(db, 'announcements')).finally(() => setAnnouncementsLoading(false))
 			data.forEach(item => dispatch(setAnnouncements(item.data())))
-			setAnnouncementsLoading(false)
 		}
 		getData()
 	}, [dispatch])
@@ -117,11 +116,11 @@ const Main: NextPage = () => {
 						trackers.map(
 							(item) =>
 								item.title === tracker && (
-									<MobileTracker key={item.title} title={item.title} country={item.name} />
+									<MobileTracker key={item.title} tracker={item} />
 								)
 						)}
 					{loading && <Spinner />}
-					{desktopCategory === 'trackers' && <Tracker />}
+					{desktopCategory === 'trackers' && <Tracker width={width} />}
 					{desktopCategory === 'otherTrackers' && <DesktopOtherTrackers />}
 					{desktopCategory === 'announcement' && <DesktopAnnouncements announcements={announcements} loading={announcementsLoading} />}
 				</Fragment>
@@ -131,7 +130,7 @@ const Main: NextPage = () => {
 					<MobileTrackers trackers={trackers} loading={loading} />
 					<MobileAnnouncement width={width} announcements={announcements} loading={announcementsLoading} />
 					<MobileRanking />
-					{show && <Tracker />}
+					{show && <Tracker width={width} />}
 				</Fragment>
 			)}
 		</Wrapper>

@@ -4,15 +4,17 @@ import TrackerCard from 'src/pagecomponents/Main/TrackerCard'
 import { db } from 'src/utils/firebaseConfig'
 import { Wrapper, Trackers, TrackerName } from './style'
 import Spinner from 'components/Spinner'
+import { useAppDispatch } from 'store/hooks'
+import { setStages } from 'store/slices/trackersSlice'
+import { ITracker } from 'types/index'
 
 type Props = {
-	title: string
-	country: string
+	tracker: ITracker
 }
 
-const MobileTracker: React.FC<Props> = ({ title, country }) => {
-	const [stages, setStages] = useState<any[]>([])
+const MobileTracker: React.FC<Props> = ({ tracker: { title, name, stages } }) => {
 	const [loading, setLoading] = useState(false)
+	const dispatch = useAppDispatch()
 
 	//GET STAGES OF TRACKER
 	useEffect(() => {
@@ -27,17 +29,17 @@ const MobileTracker: React.FC<Props> = ({ title, country }) => {
 					d.push({ ...stage.data(), date })
 				}
 			})
-			setStages(d)
+			dispatch(setStages({ id: title, stages: d }))
 		}
 		showData()
-	}, [title])
+	}, [dispatch, title])
 
 	return (
 		<Wrapper>
-			<TrackerName>{country}</TrackerName>
+			<TrackerName>{name}</TrackerName>
 			{loading && <Spinner />}
 			<Trackers>
-				{stages.map(stage => <TrackerCard key={stage.id} imgUrl={title} country={country} stage={stage} />)}
+				{stages && stages.map(stage => <TrackerCard key={stage.id} imgUrl={title} country={name} stage={stage} />)}
 			</Trackers>
 		</Wrapper>
 	)

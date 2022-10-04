@@ -24,6 +24,7 @@ const H1 = styled.h1`
 `
 
 const MobileTrackers: React.FC<Props> = ({ trackers, loading }) => {
+	console.log(trackers)
 	return (
 		<Wrapper>
 			<H1>Трекеры</H1>
@@ -31,7 +32,7 @@ const MobileTrackers: React.FC<Props> = ({ trackers, loading }) => {
 			{loading && <Spinner />}
 			{trackers &&
 				trackers.map((tracker) => (
-					<MobileTracker key={tracker.title} title={tracker.title} country={tracker.name} />
+					<MobileTracker key={tracker.title} tracker={tracker} />
 				))}
 		</Wrapper>
 	)

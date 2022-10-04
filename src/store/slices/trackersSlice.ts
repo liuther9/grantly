@@ -26,12 +26,15 @@ export const trackersSlice = createSlice({
 				otherTrackers: state.otherTrackers.filter((i) => i.title !== payload.title),
 			}
 		},
-		setStages: (state, { payload }) => {
-			// state.trackers.find(i => i.title === payload.)
+		setStages: (state, { payload }: PayloadAction<{ id: any, stages: any }>) => {
+			const data = state.trackers.find(i => i.title === payload.id)
+			if (data) {
+				data.stages = [...payload.stages]
+			}
 		}
 	},
 })
 
-export const { setTrackers, setOtherTrackers, addTracker } = trackersSlice.actions
+export const { setTrackers, setOtherTrackers, addTracker, setStages } = trackersSlice.actions
 
 export default trackersSlice.reducer
