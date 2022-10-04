@@ -24,7 +24,6 @@ const H1 = styled.h1`
 `
 
 const MobileTrackers: React.FC<Props> = ({ trackers, loading }) => {
-	console.log(trackers)
 	return (
 		<Wrapper>
 			<H1>Трекеры</H1>

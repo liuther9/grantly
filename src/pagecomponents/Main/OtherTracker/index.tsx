@@ -58,7 +58,6 @@ const OtherTracker: React.FC<Props> = ({ otherTracker }) => {
 		try {
 			const res = await updateDoc(doc(db, 'users', user.id), { trackers: arrayUnion(otherTracker.title) })
 			dispatch(addTracker(otherTracker))
-			console.log(res)
 		} catch (error) {
 			console.error(error)
 		}

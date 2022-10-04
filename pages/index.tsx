@@ -139,7 +139,7 @@ const Main: NextPage = () => {
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 	try {
-		console.log(ctx.req.cookies['auth'])
+		// console.log(ctx.req.cookies['auth'])
 		// const cookies = Cookies.get(ctx);
 		// const token = await firebaseAdmin.auth().verifyIdToken(cookies.token);
 
